@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 class FlaskConfig:
     """Default Flask configuration.
     
-    See :ref:`Flask configuration <flask_config>` for overriding these values.
+    See :doc:`Flask configuration <flask_config>` for overriding these values.
     """
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
