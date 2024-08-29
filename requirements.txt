@@ -19,7 +19,7 @@ MarkupSafe==2.1.5
 mypy==1.11.1
 mypy-extensions==1.0.0
 numpy==2.0.2
-Pillow==8.2.0
+pillow==10.4.0
 pycparser==2.20
 six==1.16.0
 SQLAlchemy==2.0.32
