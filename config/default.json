@@ -1,0 +1,48 @@
+{
+	"SQLALCHEMY_DATABASE_URI": "sqlite:///site.db",
+	
+	"LEAGUE_INFO":{
+		"leage_name": "Rec league",
+		"welcome_msg": "Welcome!",
+		"branding": {
+			"primary_logo": "public/examples/default/Logo.png",
+			"alternate_logo": "public/examples/default/AlternateLogo.png",
+			"fav_icon": "public/examples/default/icons/favicon.ico",
+			"fav_icon_svg": "public/examples/default/icons/favicon.svg"
+		}
+	},
+
+	"NUM_TEAM_PLAYERS": 2,
+	"GAME":{
+		"score": {
+			"min": 0,
+			"max": 500
+		},
+		"require_scorecard": false
+	},
+	"DIVISION": {
+		"names": [
+			"East",
+			"West",
+			"North",
+			"South"
+		]
+	},
+	"STATS": {
+		"highlight": "points",
+		"categories": [
+			{
+				"name": "Points",
+				"key": "points"
+			}
+		]
+	},
+	"LEADERBOARD":{
+		"min_season_average_games": 3,
+		"min_lifetime_average_games": 5
+	},
+
+	"APPEARANCE": {
+		"path": "default.json"
+	}
+}

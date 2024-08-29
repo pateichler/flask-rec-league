@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section mx-auto" style="max-width: 500px;">
+    <h1>Update season</h1>
+    <form method="POST" action="" id="form">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.season_name.label(class="form-control-label") }}
+            {% if form.season_name.errors %}
+                {{ form.season_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.season_name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.season_name(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+        
+        <div class="form-group">
+            {{ form.date_start.label(class="form-control-label", disabled=(season.is_before() == False)) }}
+            {% if form.date_start.errors %}
+                {{ form.date_start(class="form-control form-control-lg is-invalid", disabled=(season.is_before() == False)) }}
+                <div class="invalid-feedback">
+                    {% for error in form.date_start.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.date_start(class="form-control form-control-lg", disabled=(season.is_before() == False)) }}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.date_end.label(class="form-control-label") }}
+            {% if form.date_end.errors %}
+                {{ form.date_end(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.date_end.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.date_end(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+        <button type="button" class="btn btn-danger mt-3 float-left" data-toggle="modal" data-target="#deleteModal">Archive season</button>
+
+		<div class="form-group mt-3 float-right">
+			{{ form.submit(class="btn btn-outline-success") }}
+		</div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <form class="modal-submit" action="{{url_for('admin.delete_season')}}" method="POST">
+            {{ archive_form.hidden_tag() }}
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                {% if season.is_active() == False %}
+                Archive season
+                {% else %}
+                Can't archive season
+                {% endif %}
+                </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {% if season.is_active() %}
+                <p>
+                    Season has not ended yet. If you need to archive the season immediately change the end date to an earlier date.
+                </p>
+                {% else %}
+                {% if empty_season %}
+                <p>
+                    Season is empty. Season will be deleted completly instead of archived. Only do this if you are sure you want to delete the season.
+                </p>
+
+                {% else %}
+                <p>
+                    This action cannot be undone. All season game data will be deleted. Season stats will be updated to lifetime stats. Only do this if your are completely sure if you want to archive the season.
+                </p>
+
+                <div class="form-group">
+                    {{ archive_form.champion_team.label(class="form-control-label") }}
+                    {{ archive_form.champion_team(class="form-control form-control-lg") }}
+                </div>
+
+                <div class="form-group">
+                    {{ archive_form.runner_up_team.label(class="form-control-label") }}
+                    {{ archive_form.runner_up_team(class="form-control form-control-lg") }}
+                </div>
+
+                <div class="form-group">
+                    {{ archive_form.summary.label(class="form-control-label") }}
+                    {{ archive_form.summary(class="form-control form-control-lg", placeholder="Optional summary") }}
+                </div>
+                {% endif %}
+
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              {% if season.is_active() == False %}
+              <!-- <form class="modal-submit" action="{{url_for('admin.delete_season')}}" method="POST"> -->
+                <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input class="btn btn-danger" type="submit" value="Archive"> -->
+                {{ archive_form.submit(class="btn btn-danger") }}
+              <!-- </form> -->
+              {% endif %}
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

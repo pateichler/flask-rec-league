@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="game-full-summary game">
+	<div class="small-score">
+		<div class="row team-names">
+		   	{% for team in game.teams %}
+        <div class="col m{% if loop.index0 == 0 %}r{% else %}l{% endif %}-4">
+          <p>({{team.wins}}-{{team.losses}})</p>
+          <h2><a href="{{url_for('teams.team', team_id=team.id)}}">{{team.name}}</a></h2>
+        </div>
+        {% endfor %}
+		 </div>
+
+		<h1>Vs</h1>
+		<div class="row score">
+			<div class="col">
+		    	<p class="score">{{game.team_1_score}}</p>
+		    </div>
+		    <div class="col">
+		    	<p class="score">{{game.team_2_score}}</p>
+		   	</div>
+		</div>
+	</div>
+	<h2 class="mt-4">Scorecard</h2>
+	<div class="stat-holder">
+		<table class="stat-table">
+			<tr>
+				<th class="top-row"></th>
+				{% for player in game.players %}
+				<th class="rotate top-row {% if loop.index0 % 2 == 0 %}background{% endif %}"><div><span>{{player.name}}</span></div></th>
+				{% endfor %}
+			</tr>
+			{% for stat in t_stats %}
+			<tr {% if loop.index0 % 2 == 0 %} class="background" {% endif %}>
+				<th><p>{{stat_names[loop.index0]}}</p></th>
+				{% for player_stat in stat %}
+				<th {% if loop.index0 % 2 == 0 %} class="background" {% endif %}>
+					<p>{{player_stat}}</p>
+				</th>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<img src="{{ img_url }}" style="width: 100%;">
+	
+	{% if current_user.is_admin %}
+	<div class="py-5">
+		<!-- <a class="btn btn-danger float-left" href="{{url_for('games.delete_game',game_id=game.id)}}" role="button"><i class="bi bi-x-octagon-fill"></i> Delete</a>   -->
+		<button type="button" class="btn btn-danger float-left" data-toggle="modal" data-target="#deleteModal"><i class="bi bi-x-octagon-fill"></i> Delete</button>
+
+		<!-- <a class="btn btn-success float-right ml-3" href="#" role="button"><i class="bi bi-check-lg"></i> Verify</a>   -->
+		{% if game.verified == False %}
+		<form action="{{ url_for('games.verify_game', game_id=game.id) }}" method="POST">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    	<input class="btn btn-success float-right ml-3" type="submit" value="Verify">
+    </form>
+    {% endif %}
+		<a class="btn btn-outline-info float-right" href="{{url_for('games.update_game',game_id=game.id)}}" role="button"><i class="bi bi-pencil-fill"></i> Edit</a>  
+	</div>
+	{% endif %}
+</div>
+{% if current_user.is_admin %}
+<!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Game?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('games.delete_game', game_id=game.id) }}" method="POST">
+          	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock content %}

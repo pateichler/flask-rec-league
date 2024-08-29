@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+	<script src="{{ url_for('static', filename='game_time.js') }}"></script>
+
+	{% if user.is_admin == True %}
+	<span class="badge badge-pill badge-info">Admin</span>
+	{% endif %}
+	{% if user.is_banned == True %}
+	<span class="badge badge-pill badge-danger">Banned</span>
+	{% endif %}
+	<h1>{{user.get_disp_name()}}</h1>
+	{% if user.team is not none %}
+	<h3>Team: {{user.team.name}}</h3>
+	{% endif %}
+	
+
+	<!-- Todo check if user has any stats at all -->
+	<h2 class="mt-5 text-center">Stat Card</h2>
+	<div class="stat-holder mx-auto" style="max-width: 600px;">
+		<table class="stat-table">
+			<tr>
+				<th class="top-row"></th>
+				{% if user.season_stats is not none %}
+				<th class="rotate tall top-row background"><div><span>Current Season</span></div></th>
+				{% endif %}
+				<th class="rotate tall top-row"><div><span>Best Season</span></div></th>
+				<th class="rotate tall top-row background"><div><span>Best Game</span></div></th>
+				<th class="rotate tall top-row"><div><span>Lifetime</span></div></th>
+			</tr>
+			{% for stat in stat_names %}
+			<tr class="text-center {% if loop.index0 % 2 == 0 %}background{% endif %}">
+				<th><p>{{stat}}</p></th>
+				{% if user.season_stats is not none %}
+				<th class="background"><p>{{user.season_stats.get_stats()[loop.index0]}}</p></th>
+				{% endif %}
+				<th><p>{{user.indv_stat(stat_var_names[loop.index0], "season_stats", "prev_season_best_stats", True)}}</p></th>
+				<th class="background"><p>{{user.indv_stat(stat_var_names[loop.index0], "season_high_stats", "prev_season_high_stats", True)}}</p></th>
+				<th><p>{{user.indv_stat(stat_var_names[loop.index0], "season_stats", "prev_season_stats", False)}}</p></th>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	
+
+	<h2 class="mt-5 text-center">Previous games</h2>
+	{% if user.games|length > 0 %}
+		{% for game in user.games|reverse %}
+			{% include "game_card.html" %}
+		{% endfor %}
+	{% else %}
+		<div class="empty-summary container">
+	      <h1>No games played yet</h1>
+	      <p>Games played by the user will go here</p>
+	    </div>
+	{% endif %}
+
+{% endblock content %}

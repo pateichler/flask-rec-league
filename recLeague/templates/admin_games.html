@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Games</h1>
+
+<div class="dropdown mb-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{cat}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item {% if cat == 'Unverified' %}active{% endif %}" href="{{url_for('admin.games', cat='Unverified')}}">Unverified</a>
+    <a class="dropdown-item {% if cat == 'All' %}active{% endif %}" href="{{url_for('admin.games', cat='All')}}">All</a>
+  </div>
+</div>
+
+{% if games.items|length == 0 %}
+	{% if cat == 'All' %}
+		<div class="empty-summary container">
+      <h1>No games posted</h1>
+      <p>Posted games will go here</p>
+    </div>
+	{% else %}
+    <div class="empty-summary container">
+      <h1>All games verified</h1>
+      <p>Unverified games will go here</p>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% for game in games.items %}
+	<div class="clearfix item mb-0 {% if loop.index0 % 2 == 0 %}secondary{% endif %}">
+		<h3 class="mb-0 float-left">{{ game.teams[0].name }} vs. {{ game.teams[1].name }}</h3>
+		<a class="btn btn-outline-info float-right" href="{{ url_for('games.game', game_id=game.id) }}" role="button">View</a>
+	</div>
+{% endfor %}
+
+<div id="page-select" class="mt-3 float-right">
+{% for page_num in games.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if games.page == page_num %}
+      <a class="btn btn-info mb-4" href="{{ url_for('admin.games', page=page_num, cat=cat) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.games', page=page_num, cat=cat) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+</div>
+
+
+{% endblock content %}

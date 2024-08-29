@@ -1,0 +1,60 @@
+body {
+  margin-top: 30px;
+  background-color: var(--background-accent);
+  color: var(--background-font);
+}
+
+.content-block, .sub-content-block{
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.content-block{
+  border-radius: 20px;
+  border: 2px solid lightgray;
+  padding: 20px;
+  background-color: var(--background);
+  box-shadow: 0px 3px 15px var(--background-accent-overlap);
+}
+
+.sub-content-block{
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.small-text{
+/*    color: var(--background-font-alternate);*/
+}
+
+a {
+    color: var(--primary);
+}
+
+a:hover{
+    color: var(--primary);
+}
+
+/* Bootstrap palette override */
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary-font);
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: var(--secondary-font);
+}
+
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {   
+    border-color: var(--primary) !important;
+    color: var(--primary);
+}
+
+.btn-outline-primary:hover{
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary-font);
+}

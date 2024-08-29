@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section mx-auto" style="max-width: 500px;">
+    <h1>Create season</h1>
+    <form method="POST" action="" id="form">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.season_name.label(class="form-control-label") }}
+            {% if form.season_name.errors %}
+                {{ form.season_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.season_name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.season_name(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.date_start.label(class="form-control-label") }}
+            {% if form.date_start.errors %}
+                {{ form.date_start(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.date_start.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.date_start(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.date_end.label(class="form-control-label") }}
+            {% if form.date_end.errors %}
+                {{ form.date_end(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.date_end.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.date_end(class="form-control form-control-lg", style="min-height:48px;")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.divisions.label(class="form-control-label") }}
+            {% if form.divisions.errors %}
+                {{ form.divisions(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.divisions.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.divisions(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+		<div class="form-group mt-3 float-right">
+			{{ form.submit(class="btn btn-outline-success") }}
+		</div>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section mx-auto" style="max-width: 500px;">
+    <h1>Create team</h1>
+    <form method="POST" action="" id="form">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.team_name.label(class="form-control-label") }}
+            {% if form.team_name.errors %}
+                {{ form.team_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.team_name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.team_name(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-success") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

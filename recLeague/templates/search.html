@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+	<form method="GET" action="">
+		<div class="form-row" style="max-width: 600px; margin: 0 auto;">
+		    <div class="input-group col">
+			    <div class="input-group-prepend">
+			    	<span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+			    </div>
+			    <input type="search" placeholder="Search player or team..." name="f" class="form-control mr-2">
+	    	</div>
+		    <div class="col-auto">
+		    	<button type="submit" class="btn btn-outline-info">Search</button>
+		    </div>
+		</div>
+	</form>
+
+	<div class="search-container">
+		{% set f = request.args.get("f") %}
+		{% if f is not none %}
+		<p class="mt-2 mb-0" style="color:lightgray">Seaching for "{{f}}"</p>
+
+		{% if users.count() == 0 and teams.count() == 0 %}
+			<div class="empty-summary container mt-3">
+		      <h3 class="mb-0">No results found</h3>
+		      <!-- <p>No results found</p> -->
+		    </div>
+		{% else %}
+
+	    {% if users.count() > 0 %}
+	    <div>
+	    	<h2>Users</h2>
+	    	{% for user in users %}
+	    	<a href="{{url_for('users.account', user_id=user.id)}}">
+		    	<div class="item">
+		    		<h4>{{user.get_disp_name()}}</h4>
+		    		{% if user.team is not none %}
+		    		<p class="mb-1">{{user.team.name}}</p>
+		    		{% endif %}
+		    	</div>
+	    	</a>
+	    	{% endfor %}
+	    </div>
+	    {% endif %}
+	    {% if teams.count() > 0 %}
+	    	<h2>Teams</h2>
+	    	{% for team in teams %}
+	    	<a href="{{url_for('teams.team', team_id=team.id)}}">
+		    	<div class="item">
+		    		<h4>{{team.name}}</h4>
+		    		{% if team.players is not none and team.players|length > 0 %}
+		    		<p class="mb-1">{% for player in team.players %}{{player.name}}{% if loop.index < team.players|length %}, {% endif %}{% endfor %}</p>
+		    		{% endif %}
+		    	</div>
+	    	</a>
+	    	{% endfor %}
+	    {% endif %}
+
+	    {% endif %}
+	    {% endif %}
+
+	</div>
+    
+
+{% endblock content %}

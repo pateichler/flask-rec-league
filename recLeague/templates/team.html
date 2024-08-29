@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+	<script src="{{ url_for('static', filename='game_time.js') }}"></script>
+
+	
+	<h1>{{team.name}}</h1>
+	<h4>{{team.wins}} - {{team.losses}}</h4>
+	{% if team.division is not none %}
+	<h3>Division: {{team.division.name}}</h3>
+	{% endif %}
+	<h3></h3>
+	<h3>Players: {% for player in team.players %}<a href="{{url_for('users.account', user_id=player.id)}}">{{player.name}} </a>{% endfor %}</h3>
+	
+
+	<h2 class="mt-5 text-center">Previous games</h2>
+	{% if team.games|length > 0 %}
+		{% for game in team.games|reverse %}
+			{% include "game_card.html" %}
+		{% endfor %}
+	{% else %}
+		<div class="empty-summary container">
+	      <h1>No games played yet</h1>
+	      <p>Games played by the team will go here</p>
+	    </div>
+	{% endif %}
+
+{% endblock content %}

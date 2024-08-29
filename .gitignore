@@ -1,0 +1,16 @@
+__pycache__/
+.DS_Store
+
+recLeague/static/scorecard_pics/*
+!recLeague/static/scorecard_pics/.gitkeep
+
+instance/*.db
+venv/*
+
+config/*.json
+!config/default.json
+
+config/appearance/*.json
+!config/appearance/default.json
+
+docs/build

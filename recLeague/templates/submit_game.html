@@ -1,0 +1,269 @@
+<!-- {% extends "layout.html" %} -->
+{% block content %}
+<h1 class="text-center">{% if edit %}Edit game{% else %}Submit new game{% endif %}</h1>
+
+<div class="content-section mx-auto" style="max-width: 500px;">
+    <form method="POST" action="" id="form" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.team_1.label(class="form-control-label") }}
+            {% if form.team_1.errors %}
+                {{ form.team_1(class="form-control form-control-lg is-invalid search-select") }}
+                <div class="invalid-feedback">
+                    {% for error in form.team_1.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.team_1(class="form-control form-control-lg search-select")}}
+            {% endif %}
+        </div>
+
+        <div id="team_1_players" class="ml-5">
+            {% for player in form.team_1_players %}
+            <div class="form-group">
+                <label>Player {{loop.index}}</label>
+                {% if player.errors %}
+                    {{ player(class="form-control form-control-lg is-invalid search-select") }}
+                    <div class="invalid-feedback">
+                        {% for error in player.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ player(class="form-control form-control-lg search-select")}}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.team_2.label(class="form-control-label") }}
+            {% if form.team_2.errors %}
+                {{ form.team_2(class="form-control form-control-lg is-invalid search-select") }}
+                <div class="invalid-feedback">
+                    {% for error in form.team_2.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.team_2(class="form-control form-control-lg search-select") }}
+            {% endif %}
+        </div>
+
+        <div id="team_2_players" style="display: none;" class="ml-5">
+            {% for player in form.team_2_players %}
+            <div class="form-group">
+                <label>Player {{loop.index}}</label>
+                {% if player.errors %}
+                    {{ player(class="form-control form-control-lg is-invalid search-select") }}
+                    <div class="invalid-feedback">
+                        {% for error in player.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ player(class="form-control form-control-lg search-select")}}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if edit == false %}
+        <div id="previous-game-warning" class="alert alert-warning" role="alert">
+          <i class="bi bi-exclamation-triangle"></i> Possible duplicate: teams have played a game before
+        </div>
+        {% endif %}
+
+        <div class="form-group mb-5">
+            <label>Score</label>
+            <div class="row justify-content-center align-items-start text-center score-label mb-4">
+                <div class="col-4">
+                    <p id="score-team-1" class="mb-0">Team 1</p>
+                    {% if form.team_1_score.errors %}
+                        {{ form.team_1_score(class="form-control score is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.team_1_score.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.team_1_score(class="form-control score")}}
+                    {% endif %}
+                </div>
+                <div class="col-1">
+                    <h2 class="mt-4">:</h2>
+                </div>
+                <div class="col-4">
+                    <p id="score-team-2" class="mb-0">Team 2</p>
+                    {% if form.team_2_score.errors %}
+                        {{ form.team_2_score(class="form-control score is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.team_2_score.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.team_2_score(class="form-control score")}}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {{ form.stats.label(class="form-control-label") }}
+        <div id="stat-input-holder">
+            <table>
+                <tr>
+                    <th></th>
+                    {% for i in range((form.team_1_players | length) * 2) %}
+                    <th class="rotate"><div><span id="player-name-{{loop.index0}}">Player {{loop.index}}</span></div></th>
+                    {% endfor %}
+                </tr>
+                {{ form.stats.hidden_tag() }}
+                {% for stat in form.stats if stat.widget.input_type != 'hidden' %}
+                <tr style="height: 50px;">
+                    <th>{{ stat.label(class="form-control-label") }}</th>
+                    {% for player_stat in stat %}
+                        {% if player_stat.errors or stat.errors %}
+                            <td class="px-1">{{ player_stat(class="form-control is-invalid", inputmode="numeric", pattern="[0-9]*") }}
+                                <div class="invalid-feedback">
+                                    {% for error in player_stat.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </td>
+                        {% else %}
+                            <td class="px-1">{{ player_stat(class="form-control", inputmode="numeric", pattern="[0-9]*") }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% if stat.errors %}
+                <tr>
+                    <td colspan="100%">
+                        <div class="invalid-feedback mt-0 text-center" style="display: block;">
+                            {% for error in stat.errors %}
+                            <!-- Filter out errors from child elements -->
+                            {% if (error is iterable and (error is not string and error is not mapping)) == false %}
+                            <p class="mb-0">{{ error }}</p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+                {% endif%}
+                {% endfor %}
+            </table>
+        </div>
+        
+        <div class="form-group">
+            {{ form.picture.label(class="form-control-label") }}
+            {{ form.picture(class="form-control-file", accept="image/png, image/jpeg") }}
+            {% if form.picture.errors %}
+                {% for error in form.picture.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.comment.label(class="form-control-label") }}
+            {% if form.comment.errors %}
+                {{ form.comment(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.comment.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.comment(class="form-control form-control-lg")}}
+            {% endif %}
+        </div>
+
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.search-select').select2({width : "100%"});
+    });
+
+    //Players
+    for (i = 0; i<{{form.team_1_players | length}}; i++){
+        const id = i;
+        document.getElementById("team_1_players-" + id).onchange = (event) => {
+            if (event.target.selectedIndex >= 0)
+                $('#player-name-' + id).text(event.target.options[event.target.selectedIndex].text);
+        };
+
+        document.getElementById("team_2_players-" + id).onchange = (event) => {
+            if (event.target.selectedIndex >= 0)
+                $('#player-name-' + (id + {{form.team_1_players | length}})).text(event.target.options[event.target.selectedIndex].text);
+        };
+    }
+
+    //Teams
+    for (i = 1; i<=2; i++){
+        update_players(i, {% if first %}true{% else %}false{%endif%});
+        update_score_teams(i);
+
+
+        var t = document.getElementById("team_" + i);
+        t.onchange = (function(i) {
+            return function(){
+                update_players(i, true);
+                update_score_teams(i);
+            };
+        })(i);
+    }
+
+    function update_players(team, change){
+        team_id = $('#team_' + team).val()
+        $.getJSON("{{ url_for('teams._get_team_players', team_id='') }}/" + team_id, function(data) {
+            if(data){
+                $('#team_' + team + '_players').show();
+                if(change == true){
+                    for (i = 0; i<{{form.team_1_players | length}}; i++){
+                        $('#team_' + team + '_players-' + i).val(data[i]).change();
+                    }
+                }
+            }else{
+                $('#team_' + team + '_players').hide();
+            }
+        });
+
+        {% if edit == false %}
+        // Check if teams have played before
+        team_1 = $('#team_1').val();
+        team_2 = $('#team_2').val();
+        if (team_1 > 0 && team_2 > 0 && team_1 != team_2){
+            url = "{{ url_for('teams._get_teams_latest_game_score') }}?" + "team-1=" + team_1 + "&team-2=" + team_2;
+            $.getJSON(url, function(data) {
+                if(data)
+                    $('#previous-game-warning').show();
+                else
+                    $('#previous-game-warning').hide();
+            });
+        }else
+            $('#previous-game-warning').hide();
+        {% endif %}
+    }
+
+    function update_score_teams(team){
+        var t = document.getElementById("team_" + team);
+        $('#score-team-' + team).text(t.options[t.selectedIndex].text);
+    }
+
+    // var slider = document.getElementById("score");
+    // update_score(slider.value)
+    // slider.oninput = function(){ update_score(this.value) };
+
+    // function update_score(v){
+    //     $('#score-1').text(5-v);
+    //     $('#score-2').text(v);
+    // }
+
+</script>
+{% endblock content %}

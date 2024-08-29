@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Leaderboard</h1>
+
+<div class="clearfix">
+  <div class="dropdown mb-3 float-left">
+    <h4>Stat</h4>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{stat_name}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for stat in stat_names %}
+      <a class="dropdown-item {% if stat_name == stat %}active{% endif %}" href="{{url_for('stats.leaderboard', stat_name=stat, stat_period=stat_period)}}">{{stat}}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="dropdown mb-3 ml-3 float-left">
+    <h4>Period</h4>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{stat_period}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for period in stat_periods %}
+      <a class="dropdown-item {% if stat_period == period %}active{% endif %}" href="{{url_for('stats.leaderboard', stat_name=stat_name, stat_period=period)}}">{{period}}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<p>{{stat_desc}}</p>
+
+<div class="stat-holder standings">
+  <table class="stat-table">
+  	<tr>
+  		<th>Player</th>
+  		<th class="background" style="width:20%;">{{stat_name}}</th>
+  	</tr>
+  	{% for player in players.items %}
+  	<tr {% if loop.index0 % 2 == 0 %} class="background" {% endif %}>
+  		<th class="name"><a href="{{url_for('users.account', user_id=player.id)}}" {% if current_user.id == player.id %}style="text-decoration: underline; color:orange;"{% endif %}>{{player.get_disp_name()}}</a></th>
+  		<td class="background">{{stat_vals[loop.index0]}}</td>
+  	</tr>
+  	{% endfor %}
+  </table>
+</div>
+
+
+<div id="page-select" class="mt-3 float-right">
+{% for page_num in players.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if players.page == page_num %}
+      <a class="btn btn-primary mb-4" href="{{ url_for('stats.leaderboard', page=page_num, stat_name=stat_name, stat_period=stat_period) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-primary mb-4" href="{{ url_for('stats.leaderboard', page=page_num, stat_name=stat_name, stat_period=stat_period) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+</div>
+
+{% endblock content %}

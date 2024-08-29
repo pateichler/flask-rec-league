@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Standings</h1>
+
+{% set div_id = request.args.get('division') | int %}
+<div class="dropdown mb-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% if div_id == 0 %}
+    League
+    {% else %}
+	    {% for division in divisions %}
+	    	{% if division.id == div_id %}
+	    		{{division.name}}
+	    	{% endif %}
+	    {% endfor %}
+    {% endif %}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item {% if div_id == 0 %}active{% endif %}" href="{{url_for('stats.standings')}}">League</a>
+    {% for division in divisions %}
+    <a class="dropdown-item {% if div_id is not none and div_id == division.id %}active{% endif %}" href="{{url_for('stats.standings', division=loop.index)}}">{{division.name}}{% if current_user.team is not none and current_user.team.division is not none and division.id == current_user.team.division.id %} (your division){% endif %}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="stat-holder standings">
+	<table class="stat-table" style="max-width: 500px;">
+		<tr>
+			<th>Team</th>
+			<th class="background" style="width:10%;" title="Wins">W</th>
+			<th style="width:10%;" title="Losses">L</th>
+			<th class="background" style="width:10%;" title="Games behind">GB</th>
+			<th style="width:10%;" title="Division record">DIV</th>
+			<th class="background" style="width:10%;" title="Streak">STR</th>
+			<th style="width:10%;" title="Score differential">SD</th>
+		</tr>
+		{% for team in teams %}
+		<tr {% if loop.index0 % 2 == 0 %} class="background" {% endif %}>
+			<th class="name" style="max-width:25%; min-width: 100px;"><span style="color:gray;">{{places[loop.index0]}}</span> <a href="{{url_for('teams.team', team_id=team.id)}}" {% if current_user.team is not none and current_user.team.id == team.id %}style="text-decoration: underline; color:orange;"{% endif %} style="word-break: break-all;">{{team.name}}</a></th>
+			<td class="background">{{team.wins}}</td>
+			<td>{{team.losses}}</td>
+			{% set gb = teams[0].wins - team.wins %}
+			<td class="background">{% if gb == 0 %}-{% else %}{{gb}}{% endif %}</td>
+			<td>{{team.div_wins}}-{{team.div_losses}}</td>
+			<td class="background">{% if team.streak == 0 %}-{% else %}{% if team.streak > 0 %}W{% else %}L{% endif %}{{team.streak|abs}}{% endif %}</td>
+			<td >{% if team.score_diff > 0 %}+{% endif %}{{team.score_diff}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<p class="text-center" style="color: var(--background-font-alternate); font-size: 12px;">*Standings are not official. Seeding may change for playoffs.</p>
+
+
+{% endblock content %}

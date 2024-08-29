@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Stats</h1>
+<div style="max-width:300px" class="mx-auto">
+	<a class="btn btn-primary btn-lg btn-block" href="{{url_for('admin.downloadTeamsCSV')}}" role="button">Download teams CSV</a>
+</div>
+<p class="mt-5" style="color:var(--background-font-alternate); text-align:center;">*More downloadable stats will be added in the future</p>
+{% endblock content %}

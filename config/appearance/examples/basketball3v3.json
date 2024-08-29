@@ -1,0 +1,13 @@
+{
+	"primary_color": "#E97F00",
+	"secondary_color": "#685135",
+	"primary_font_color": "white",
+	"secondary_font_color": "white",
+
+	"background_color": "#c1dde8",
+	"background_accent_color": "#e3f3fa",
+	"background_accent_overlap_color": "white",
+	"background_font_color": "#212529",
+	"background_font_color_alternate": "white",
+	"custom_css": ""
+}

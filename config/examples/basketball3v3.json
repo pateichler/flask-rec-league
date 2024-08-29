@@ -1,0 +1,59 @@
+{
+	"SQLALCHEMY_DATABASE_URI": "sqlite:///basketball_site.db",
+	
+	"LEAGUE_INFO":{
+		"leage_name": "Basketball 3v3 league",
+		"welcome_msg": "Welcome!",
+		"branding": {
+			"primary_logo": "public/examples/default/Logo.png",
+			"alternate_logo": "public/examples/default/AlternateLogo.png",
+			"fav_icon": "public/examples/default/icons/favicon.ico",
+			"fav_icon_svg": "public/examples/default/icons/favicon.svg"
+		}
+	},
+
+	"NUM_TEAM_PLAYERS": 3,
+	"GAME":{
+		"score": {
+			"min": 0,
+			"max": 200
+		},
+		"require_scorecard": false
+	},
+	"DIVISION": {
+		"names": [
+			"East",
+			"West",
+			"North",
+			"South"
+		]
+	},
+	"STATS": {
+		"highlight": "points",
+		"categories": [
+			{
+				"name": "Points",
+				"key": "points"
+			},
+			{
+				"name": "Assists",
+				"key": "assists"
+			},
+			{
+				"name": "Fouls",
+				"key": "fouls",
+				"form_settings":{
+					"max": 5
+				}
+			}
+		]
+	},
+	"LEADERBOARD":{
+		"min_season_average_games": 3,
+		"min_lifetime_average_games": 5
+	},
+
+	"APPEARANCE": {
+		"path": "examples/basketball3v3.json"
+	}
+}

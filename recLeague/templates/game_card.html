@@ -1,0 +1,71 @@
+<div class="game game-summary container">
+  <p class="status mb-0">{% if game.verified %}&#10003;{% else %}Pending...{% endif %}</p>
+  <p class="date mb-0">
+    <script type="text/javascript">
+      var d = new Date()
+      d.setTime( Math.round({{game.get_posted_timestamp()}} * 1000) )
+      document.write(timeSince(d))
+    </script>
+  </p>
+  <p class="my-0">{% if game.teams[0].division is not none and game.teams[1].division is not none and 
+  game.teams[0].division.id == game.teams[1].division.id %}Divisional{% else %}Non-Divisional{% endif %}</p>
+  <div class="row team-names">
+    {% for team in game.teams %}
+    <div class="col m{% if loop.index0 == 0 %}r{% else %}l{% endif %}-4">
+      <p>({{team.wins}}-{{team.losses}})</p>
+      <h2><a href="{{url_for('teams.team', team_id=team.id)}}">{{team.name}}</a></h2>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h1>Vs</h1>
+  <div class="row score">
+    <div class="col">
+      <p class="score">{{game.team_1_score}}</p>
+    </div>
+    <div class="col">
+      <p class="score">{{game.team_2_score}}</p>
+    </div>
+  </div>
+
+  {% if highlight_stat is not none %}
+  <div class="row player-info">
+    {% set num_players = game.player_stats | length %}
+    {% set col_size = num_players / 2 %}
+    {% for i in range(num_players) %}
+      {% if i % col_size == 0 %}
+      <div class="col-sm mt-3 mt-sm-0">
+      {% endif %}
+      <div class="player {% if (i % col_size) % 2 == 1 %} background {% endif %}">
+        <p class="name mb-0">
+          {% if game.is_sub[i] %}
+          <span class="sub">SUB</span>
+          {% endif %} 
+
+          {% if game.players[i].name == "Guest Player" %}
+          <span class="guest">Guest player</span>
+          {% else %}
+          <a href="{{url_for('users.account', user_id=game.players[i].id)}}">{{game.players[i].get_disp_name()}}</a>
+          {% endif %}
+        </p>
+        
+        <p class="highlight-stat mb-0">{{game.player_stats[i][highlight_stat]}}</p>
+      </div>
+      {% if i % col_size == col_size - 1 %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if game.comment is not none %}
+  <p class="mt-2" style="text-align: left;">{{game.comment}}</p>
+  {% endif %}
+
+  <!-- <div style="margin:auto;">
+    <p><span style="font-size: 28px">&#128293;</span>Team 1 is on 7 game winning streak</p>
+  </div> -->
+
+    <a class="btn btn-outline-primary" href="{{ url_for('games.game', game_id=game.id) }}" role="button">View full match <i class="bi bi-plus-circle"></i></a>
+
+</div>
