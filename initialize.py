@@ -15,7 +15,10 @@ app = create_app()
 app.app_context().push()
 
 if database_exists(app):
-    if get_answer("Database already exists. Do you wish to overrite it with a new database?") is False:
+    prompt = ("Database already exists. Do you wish to overwrite it with a "
+              "new database?")
+
+    if get_answer(prompt) is False:
         print("Canceling initialization")
         sys.exit()
 
@@ -25,7 +28,9 @@ db.create_all()
 
 # Create initial settings data object
 default_league_pass = "ChangeMe"
-hashed_password = bcrypt.generate_password_hash(default_league_pass).decode('utf-8')
+hashed_password = (
+    bcrypt.generate_password_hash(default_league_pass).decode('utf-8')
+)
 s = Settings(password=hashed_password)
 db.session.add(s)
 
@@ -48,7 +53,7 @@ print("=======================================")
 
 for i in range(2):
     guest_user = User(
-        name=f"Guest {i+1}", email=f"guest_{i+1}", password=admin_pass, 
+        name="Guest Player", email=f"guest_{i+1}", password=admin_pass, 
         is_admin=False
     )
     db.session.add(guest_user)
@@ -63,4 +68,4 @@ if os.path.isdir(path):
 else:
     os.makedirs(path)
 
-print("App initalized")
+print("App initialized")
