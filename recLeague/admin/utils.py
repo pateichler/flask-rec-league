@@ -8,8 +8,8 @@ def get_team_csv_text() -> str:
     Returns:
         str: CSV formatted string with team data.
     """
-
-    csv = f"Team{f',Player {i}' for i in range(NUM_TEAM_PLAYERS)}\n"
+    player_heading = ','.join([f'Player {i}' for i in range(NUM_TEAM_PLAYERS)])
+    csv = f"Team,{player_heading}\n"
 
     csv = "Team,Player 1,Player 2\n"
     teams = Team.query.all()
