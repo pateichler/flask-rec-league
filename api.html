@@ -1,0 +1,1485 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Deploying your website" href="deploy.html" />
+
+    <!-- Generated with Sphinx 8.0.2 and Furo 2024.08.06 -->
+        <title>API - Rec League 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Rec League 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Rec League 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">Using Rec Leagues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Admin</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="developer.html">Developer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Developer</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_website.html">Creating your first website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flask_config.html">Flask configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">Deploying your website</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">API</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/api.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Link to this heading">¶</a></h1>
+<p>The following is the API documentation.</p>
+<dl class="py function" id="module-recLeague">
+<dt class="sig sig-object py" id="recLeague.create_app">
+<span class="sig-prename descclassname"><span class="pre">recLeague.</span></span><span class="sig-name descname"><span class="pre">create_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://flask.palletsprojects.com/en/3.0.x/api/#flask.Flask" title="(in Flask v3.0.x)"><span class="pre">Flask</span></a></span></span><a class="headerlink" href="#recLeague.create_app" title="Link to this definition">¶</a></dt>
+<dd><p>Creates Flask application object.</p>
+<p>This method sets the app configuration and imports app the blueprints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>application object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="routes">
+<h2>Routes<a class="headerlink" href="#routes" title="Link to this heading">¶</a></h2>
+<p>Below are the API routes. Flask template routes for the application are not listed .</p>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--auth">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/auth</span></span><a class="headerlink" href="#get--auth" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates whether the user is currently logged in.</p>
+<p>Method is used by NGINX for authorized static routes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – User is logged in.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a></span> – User is not logged in.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--team-players-(team_id)">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/team-players/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">team_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#get--team-players-(team_id)" title="Link to this definition">¶</a></dt>
+<dd><p>API route for getting players on team.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>team_id (int): ID of team</p>
+</dd>
+<dt>Returns:</dt><dd><p>json: Array of user IDs on team.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Team has players.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Team does not exist.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Not valid team_id.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--teams-latest-game-score">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teams-latest-game-score</span></span><a class="headerlink" href="#get--teams-latest-game-score" title="Link to this definition">¶</a></dt>
+<dd><p>API route gets latest game score between two teams.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>json: Object with fields team_1 and team_2 set to the score.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>team-1</strong> (<em>int</em>) – ID of team 1.</p></li>
+<li><p><strong>team-2</strong> (<em>int</em>) – ID of team 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Teams have a game between each other.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – No game between the teams was found.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Team query parameters not valid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h2>
+<section id="flask-config-path">
+<span id="id1"></span><h3>Flask Config Path<a class="headerlink" href="#flask-config-path" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FLASK_CONFIG_PATH</span></code></p>
+<p>Path to a configuration file used to set Flask <code class="docutils literal notranslate"><span class="pre">app.config</span></code>. Path should be absolute. See <a class="reference external" href="https://flask.palletsprojects.com/en/3.0.x/api/#flask.Config.from_envvar">flask.Config.from_envvar</a> for details about the config file.</p>
+</section>
+<section id="league-config-path">
+<span id="id2"></span><h3>League Config Path<a class="headerlink" href="#league-config-path" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">LEAGUE_CONFIG_PATH</span></code></p>
+<p>Path to a JSON configuration for league settings. See <a class="reference internal" href="#config"><span class="std std-ref">config</span></a> for details about the JSON file. Supports either relative or absolute paths. Relative paths are from the directory <code class="docutils literal notranslate"><span class="pre">flask-rec-league/config</span></code>.</p>
+</section>
+</section>
+<section id="configuration">
+<span id="config"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>Configuration is handled by JSON files. Default configuration is located at <code class="docutils literal notranslate"><span class="pre">config/default.json</span></code> with the values shown below.</p>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">:</span> <span class="s2">&quot;sqlite:///site.db&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;LEAGUE_INFO&quot;</span><span class="p">:{</span>
+                <span class="s2">&quot;leage_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Rec league&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;welcome_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;branding&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;primary_logo&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/Logo.png&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;alternate_logo&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/AlternateLogo.png&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;fav_icon&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/icons/favicon.ico&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;fav_icon_svg&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/icons/favicon.svg&quot;</span>
+                <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="s2">&quot;NUM_TEAM_PLAYERS&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;GAME&quot;</span><span class="p">:{</span>
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                        <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">500</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;require_scorecard&quot;</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;DIVISION&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;names&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s2">&quot;East&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;West&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;North&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;South&quot;</span>
+                <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;STATS&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="s2">&quot;points&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;categories&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Points&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;points&quot;</span>
+                        <span class="p">}</span>
+                <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;LEADERBOARD&quot;</span><span class="p">:{</span>
+                <span class="s2">&quot;min_season_average_games&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s2">&quot;min_lifetime_average_games&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">},</span>
+
+        <span class="s2">&quot;APPEARANCE&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;default.json&quot;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="py data" id="module-recLeague.config">
+<dt class="sig sig-object py" id="recLeague.config.APPEARANCE_PATH">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">APPEARANCE_PATH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.APPEARANCE_PATH" title="Link to this definition">¶</a></dt>
+<dd><p>Path to appearance <code class="docutils literal notranslate"><span class="pre">.json</span></code> file relative to config/appearance folder or
+as absolute path.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/primary_color</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.CONFIG_PATH">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">CONFIG_PATH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.CONFIG_PATH" title="Link to this definition">¶</a></dt>
+<dd><p>Path for loading the initial configuration <code class="docutils literal notranslate"><span class="pre">.json</span></code> file relative to
+config folder or as absolute path.</p>
+<p>Variable is set from environment variable named
+<a class="reference internal" href="#league-config-path"><span class="std std-ref">LEAGUE_CONFIG_PATH</span></a>. If no environment variable
+is set, the default value is <code class="docutils literal notranslate"><span class="pre">my_config.json</span></code>.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.DEFUALT_NUM_DIVISIONS">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">DEFUALT_NUM_DIVISIONS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.DEFUALT_NUM_DIVISIONS" title="Link to this definition">¶</a></dt>
+<dd><p>Default number of divisions when creating a season.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/DIVISION/max_num</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.DIVISION_NAMES">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">DIVISION_NAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#recLeague.config.DIVISION_NAMES" title="Link to this definition">¶</a></dt>
+<dd><p>Names of divisions.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/DIVISION/names</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.config.FlaskConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">FlaskConfig</span></span><a class="headerlink" href="#recLeague.config.FlaskConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Default Flask configuration.</p>
+<p>See <a class="reference internal" href="flask_config.html"><span class="doc">Flask configuration</span></a> for overriding these values.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.LEAGUE_NAME">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">LEAGUE_NAME</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.LEAGUE_NAME" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the league.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/LEAGUE_INFO/league_name</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.MAX_DIVISIONS">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">MAX_DIVISIONS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.MAX_DIVISIONS" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum number of divisions when creating a season.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/DIVISION/max_num</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.MAX_GAME_SCORE">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">MAX_GAME_SCORE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.MAX_GAME_SCORE" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum required score in a game.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/GAME/score/max</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.MIN_GAME_SCORE">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">MIN_GAME_SCORE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.MIN_GAME_SCORE" title="Link to this definition">¶</a></dt>
+<dd><p>Minimum required score in a game.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/GAME/score/min</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.MIN_LIFETIME_AVERAGE_GAMES">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">MIN_LIFETIME_AVERAGE_GAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.MIN_LIFETIME_AVERAGE_GAMES" title="Link to this definition">¶</a></dt>
+<dd><p>Minimum number of lifetime games for a user to be displayed on the lifetime
+average leaderboard.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/LEADERBOARD/min_lifetime_average_games</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.MIN_SEASON_AVERAGE_GAMES">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">MIN_SEASON_AVERAGE_GAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.MIN_SEASON_AVERAGE_GAMES" title="Link to this definition">¶</a></dt>
+<dd><p>Minimum number of seasonal games for a user to be displayed on the season
+average leaderboard.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/LEADERBOARD/min_season_average_games</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.NUM_TEAM_PLAYERS">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">NUM_TEAM_PLAYERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#recLeague.config.NUM_TEAM_PLAYERS" title="Link to this definition">¶</a></dt>
+<dd><p>Number of players on each team.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/NUM_TEAM_PLAYERS</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This property is unable to change after initialization.</p>
+</div>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.SCORECARD_PICS_PATH">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">SCORECARD_PICS_PATH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.SCORECARD_PICS_PATH" title="Link to this definition">¶</a></dt>
+<dd><p>Path to scorecard pics relative to the recLeague module path.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.SCORECARD_PICS_STATIC_PATH">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">SCORECARD_PICS_STATIC_PATH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.SCORECARD_PICS_STATIC_PATH" title="Link to this definition">¶</a></dt>
+<dd><p>Path to scorecard pics relative to the static folder.</p>
+<p>This is dynamically created from <a class="reference internal" href="#recLeague.config.SQLALCHEMY_DATABASE_URI" title="recLeague.config.SQLALCHEMY_DATABASE_URI"><code class="xref py py-data docutils literal notranslate"><span class="pre">SQLALCHEMY_DATABASE_URI</span></code></a> by
+using the basename of the URI in combination with the full URI hashed to a
+10 character hash. The two names are combined with a “<cite>_</cite>” as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">uri_basename</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">hashed_uri</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This naming scheme is beneficial when using multiple database URIs in order
+to avoid overwriting other databases images. The basename is to make the
+folder easily found by a human, and the hash is to make sure the path is
+unique for URI. Without the hash a collision could occur for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">site</span><span class="p">:</span><span class="o">///</span><span class="n">test</span><span class="o">.</span><span class="n">db</span>
+<span class="o">-</span> <span class="n">vs</span><span class="o">.</span> <span class="o">-</span>
+<span class="n">site</span><span class="p">:</span><span class="o">///</span><span class="n">folder</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">db</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.SQLALCHEMY_DATABASE_URI">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.SQLALCHEMY_DATABASE_URI" title="Link to this definition">¶</a></dt>
+<dd><p>Database URI for Flask SQLAlchemy.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/SQLALCHEMY_DATABASE_URI</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.STAT_CATEGORIES">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">STAT_CATEGORIES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#recLeague.config.STAT_CATEGORIES" title="Link to this definition">¶</a></dt>
+<dd><p>Categories of game statistics.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/STATS/categories</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This property is unable to change after initialization.</p>
+</div>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.STAT_HIGHLIGHT">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">STAT_HIGHLIGHT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.STAT_HIGHLIGHT" title="Link to this definition">¶</a></dt>
+<dd><p>Statistic to highlight in quick game summary.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/STATS/highlight</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<section id="appearance">
+<h3>Appearance<a class="headerlink" href="#appearance" title="Link to this heading">¶</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.APPEARANCE">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">APPEARANCE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></em><a class="headerlink" href="#recLeague.config.APPEARANCE" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary for website appearance.</p>
+<p>Values are loaded from JSON file at <a class="reference internal" href="#recLeague.config.APPEARANCE_PATH" title="recLeague.config.APPEARANCE_PATH"><code class="xref py py-data docutils literal notranslate"><span class="pre">APPEARANCE_PATH</span></code></a>. Default
+appearance is located at <code class="docutils literal notranslate"><span class="pre">config/appearance/default.json</span></code> with the
+values included below.</p>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;primary_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#ef3d3d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;secondary_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#6c757d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;primary_font_color&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;secondary_font_color&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;background_color&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;background_accent_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#E5E5E5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;background_accent_overlap_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#CECECE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;background_font_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#212529&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;background_font_color_alternate&quot;</span><span class="p">:</span> <span class="s2">&quot;lightgray&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;custom_css&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Entries</strong>:</p>
+<blockquote>
+<div><p><strong>primary_color</strong>: Primary color of the website.</p>
+<blockquote>
+<div><p><em>json path</em>: /primary_color</p>
+</div></blockquote>
+<p><strong>secondary_color</strong>: Secondary color of the website.</p>
+<blockquote>
+<div><p><em>json path</em>: /secondary_color</p>
+</div></blockquote>
+<dl>
+<dt><strong>primary_font_color</strong>: Font color for when text is on the primary</dt><dd><p>color.</p>
+<p><em>json path</em>: /primary_font_color</p>
+</dd>
+<dt><strong>secondary_font_color</strong>: Font color for when text is on the secondary</dt><dd><p>color.</p>
+<p><em>json path</em>: /secondary_font_color</p>
+</dd>
+<dt><strong>background_color</strong>: Background color of the website.</dt><dd><p>color.</p>
+<p><em>json path</em>: /background_color</p>
+</dd>
+<dt><strong>background_accent_color</strong>: Background accent color of the website.</dt><dd><p>color.</p>
+<p><em>json path</em>: /background_accent_color</p>
+</dd>
+<dt><strong>background_accent_overlap_color</strong>: Background accent color when</dt><dd><p>color overlaps itself.</p>
+<p><em>json path</em>: /background_accent_overlap_color</p>
+</dd>
+<dt><strong>background_font_color</strong>: Font color for when text is on the</dt><dd><p>background color.</p>
+<p><em>json path</em>: /background_font_color</p>
+</dd>
+<dt><strong>background_font_color_alternate</strong>: Alternate font color for when</dt><dd><p>text is on the background color.</p>
+<p><em>json path</em>: /background_font_color_alternate</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="database">
+<h2>Database<a class="headerlink" href="#database" title="Link to this heading">¶</a></h2>
+<p>Database built with SQLAlchemy.</p>
+<p id="module-recLeague.models">Script holds all sqlalchemy data models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.ArchivedSeason">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">ArchivedSeason</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.ArchivedSeason" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Division">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Division</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Division" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Game">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Game</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Game" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Season">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Season</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Season" title="Link to this definition">¶</a></dt>
+<dd><p>Database object representing seasons.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.models.Season.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#recLeague.models.Season.id" title="Link to this definition">¶</a></dt>
+<dd><p>Unique ID of table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapped[int]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.models.Season.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#recLeague.models.Season.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the season.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapped[str]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.models.Season.date_start">
+<span class="sig-name descname"><span class="pre">date_start</span></span><a class="headerlink" href="#recLeague.models.Season.date_start" title="Link to this definition">¶</a></dt>
+<dd><p>Start date of the season. This date is
+when users can start submitting games.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapped[DateTime]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.models.Season.date_end">
+<span class="sig-name descname"><span class="pre">date_end</span></span><a class="headerlink" href="#recLeague.models.Season.date_end" title="Link to this definition">¶</a></dt>
+<dd><p>End date of the season. This date is when
+seasons stop accepting new game submissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapped[DateTime]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.models.Season.is_archived">
+<span class="sig-name descname"><span class="pre">is_archived</span></span><a class="headerlink" href="#recLeague.models.Season.is_archived" title="Link to this definition">¶</a></dt>
+<dd><p>True if the raw data from the season is
+archived.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapped[bool]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Settings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Settings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Stats">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Stats" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.Team">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">Team</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.Team" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.models.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.models.User" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-recLeague.games.utils">
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-recLeague.games.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.calculate_player_stats">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">calculate_player_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.12)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#recLeague.models.User" title="recLeague.models.User"><span class="pre">User</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.calculate_player_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the running total of current season stats for players.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>players</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable[Player]</span></code>) – List of players to calcuate stats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.calculate_stats">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">calculate_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">teams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.12)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#recLeague.models.Team" title="recLeague.models.Team"><span class="pre">Team</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">players</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.12)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#recLeague.models.User" title="recLeague.models.User"><span class="pre">User</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.calculate_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the running total of current season stats for teams
+and players.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>teams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable[Team]</span></code>) – List of teams to calcuate stats</p></li>
+<li><p><strong>players</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable[Player]</span></code>) – List of players to calcuate stats</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.calculate_team_stats">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">calculate_team_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">teams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.12)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#recLeague.models.Team" title="recLeague.models.Team"><span class="pre">Team</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.calculate_team_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the running total of current season stats for teams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>teams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable[Team]</span></code>) – List of teams to calcuate stats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.is_game_user_modifiable">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">is_game_user_modifiable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#recLeague.models.Game" title="recLeague.models.Game"><span class="pre">Game</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.is_game_user_modifiable" title="Link to this definition">¶</a></dt>
+<dd><p>Returns if the game is able to be modified by the current user.</p>
+<p>Can only modify the game if current is user is an admin or if the current
+user is one of the players is in the game and the game hasn’t been
+verified yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>game</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Game</span></code>) – Game to check if it is editable.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if game is able to edit by the current user, otherwise False</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.save_scorecard_picture">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">save_scorecard_picture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form_picture_filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.save_scorecard_picture" title="Link to this definition">¶</a></dt>
+<dd><p>Saves scorecard picture as jpeg file at the scorecard static path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="#recLeague.config.SCORECARD_PICS_STATIC_PATH" title="recLeague.config.SCORECARD_PICS_STATIC_PATH"><code class="xref py py-data docutils literal notranslate"><span class="pre">SCORECARD_PICS_STATIC_PATH</span></code></a> for information about
+the save path.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>form_picture_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Filepath of picture to save.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filepath of saved image file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recLeague.games.utils.set_game">
+<span class="sig-prename descclassname"><span class="pre">recLeague.games.utils.</span></span><span class="sig-name descname"><span class="pre">set_game</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#recLeague.games.forms.GameForm" title="recLeague.games.forms.GameForm"><span class="pre">GameForm</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#recLeague.models.Game" title="recLeague.models.Game"><span class="pre">Game</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.utils.set_game" title="Link to this definition">¶</a></dt>
+<dd><p>Sets game object with game form data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>form</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">GameFrom</span></code>) – form to save</p></li>
+<li><p><strong>game</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Game</span></code>) – game object to save data in</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-recLeague.users.utils">
+<dt class="sig sig-object py" id="recLeague.users.utils.send_reset_email">
+<span class="sig-prename descclassname"><span class="pre">recLeague.users.utils.</span></span><span class="sig-name descname"><span class="pre">send_reset_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#recLeague.models.User" title="recLeague.models.User"><span class="pre">User</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.users.utils.send_reset_email" title="Link to this definition">¶</a></dt>
+<dd><p>Sends a reset password email to user.</p>
+<p>Uses the email stored in the User.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code>) – User to send password email.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-recLeague.admin.utils">
+<dt class="sig sig-object py" id="recLeague.admin.utils.get_team_csv_text">
+<span class="sig-prename descclassname"><span class="pre">recLeague.admin.utils.</span></span><span class="sig-name descname"><span class="pre">get_team_csv_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#recLeague.admin.utils.get_team_csv_text" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a string in CSV format with all teams and players on the team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CSV formatted string with team data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-recLeague.games.forms">
+<span id="forms"></span><h2>Forms<a class="headerlink" href="#module-recLeague.games.forms" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.games.forms.</span></span><span class="sig-name descname"><span class="pre">GameForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.games.forms.GameForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for game data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_1">
+<span class="sig-name descname"><span class="pre">team_1</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_1" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_2">
+<span class="sig-name descname"><span class="pre">team_2</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_1_players">
+<span class="sig-name descname"><span class="pre">team_1_players</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_1_players" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_2_players">
+<span class="sig-name descname"><span class="pre">team_2_players</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_2_players" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_1_score">
+<span class="sig-name descname"><span class="pre">team_1_score</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_1_score" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.team_2_score">
+<span class="sig-name descname"><span class="pre">team_2_score</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.team_2_score" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.stats" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.picture">
+<span class="sig-name descname"><span class="pre">picture</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.picture" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.comment">
+<span class="sig-name descname"><span class="pre">comment</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.comment" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="recLeague.games.forms.GameForm.set_form">
+<span class="sig-name descname"><span class="pre">set_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#recLeague.models.Game" title="recLeague.models.Game"><span class="pre">Game</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.forms.GameForm.set_form" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the form with game data.</p>
+<p>Form is set with all data from the game object. If game is None, the
+stat field will be initialized to an empty array of stats, and all
+other fields will remain unset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>game</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Game]</span></code>) – If given, sets form with data, otherwise
+sets an empty form.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.games.forms.StatForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.games.forms.</span></span><span class="sig-name descname"><span class="pre">StatForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.games.forms.StatForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for entering in game stats.</p>
+<p>Stats are set dynamically to this class using config stat names.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="recLeague.games.forms.StatForm.set_stats">
+<span class="sig-name descname"><span class="pre">set_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player_stats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.12)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#recLeague.models.Stats" title="recLeague.models.Stats"><span class="pre">Stats</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#recLeague.games.forms.StatForm.set_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Helper method sets stats in game form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>form</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">GameFrom</span></code>) – form to set</p></li>
+<li><p><strong>player_stats</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optional[Sequence[Stats]]</span></code>) – stat values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.games.forms.TeamCountValdiator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.games.forms.</span></span><span class="sig-name descname"><span class="pre">TeamCountValdiator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">team_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.games.forms.TeamCountValdiator" title="Link to this definition">¶</a></dt>
+<dd><p>Custom wtform validator for validating stats between teams</p>
+</dd></dl>
+
+<dl class="py class" id="module-recLeague.users.forms">
+<dt class="sig sig-object py" id="recLeague.users.forms.LoginForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.users.forms.</span></span><span class="sig-name descname"><span class="pre">LoginForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.users.forms.LoginForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for logging in user.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.LoginForm.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#recLeague.users.forms.LoginForm.email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.LoginForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#recLeague.users.forms.LoginForm.password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.LoginForm.remember">
+<span class="sig-name descname"><span class="pre">remember</span></span><a class="headerlink" href="#recLeague.users.forms.LoginForm.remember" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.LoginForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.users.forms.LoginForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.users.forms.</span></span><span class="sig-name descname"><span class="pre">RegistrationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for registering a new user.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.first_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.last_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.confirm_password">
+<span class="sig-name descname"><span class="pre">confirm_password</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.confirm_password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.league_password">
+<span class="sig-name descname"><span class="pre">league_password</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.league_password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RegistrationForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.users.forms.RegistrationForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.users.forms.RequestResetForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.users.forms.</span></span><span class="sig-name descname"><span class="pre">RequestResetForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.users.forms.RequestResetForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for requesting a reset password.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RequestResetForm.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#recLeague.users.forms.RequestResetForm.email" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.RequestResetForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.users.forms.RequestResetForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.users.forms.ResetPasswordForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.users.forms.</span></span><span class="sig-name descname"><span class="pre">ResetPasswordForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.users.forms.ResetPasswordForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for resetting a password.</p>
+<p>Form is used only once a password reset token is verified.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.ResetPasswordForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#recLeague.users.forms.ResetPasswordForm.password" title="Link to this definition">¶</a></dt>
+<dd><p>Field for new password to set user.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.ResetPasswordForm.confirm_password">
+<span class="sig-name descname"><span class="pre">confirm_password</span></span><a class="headerlink" href="#recLeague.users.forms.ResetPasswordForm.confirm_password" title="Link to this definition">¶</a></dt>
+<dd><p>Field for repeat of new password.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.users.forms.ResetPasswordForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.users.forms.ResetPasswordForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-recLeague.teams.forms">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamCreateForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.teams.forms.</span></span><span class="sig-name descname"><span class="pre">TeamCreateForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.teams.forms.TeamCreateForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for creating a new team.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamCreateForm.team_name">
+<span class="sig-name descname"><span class="pre">team_name</span></span><a class="headerlink" href="#recLeague.teams.forms.TeamCreateForm.team_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamCreateForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.teams.forms.TeamCreateForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamJoinForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.teams.forms.</span></span><span class="sig-name descname"><span class="pre">TeamJoinForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.teams.forms.TeamJoinForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for joining a team.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamJoinForm.team">
+<span class="sig-name descname"><span class="pre">team</span></span><a class="headerlink" href="#recLeague.teams.forms.TeamJoinForm.team" title="Link to this definition">¶</a></dt>
+<dd><p>Select field to select joinable teams.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.teams.forms.TeamJoinForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.teams.forms.TeamJoinForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-recLeague.admin.forms">
+<dt class="sig sig-object py" id="recLeague.admin.forms.ArchiveSeasonForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">ArchiveSeasonForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.ArchiveSeasonForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for archiving a season.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.ArchiveSeasonForm.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><a class="headerlink" href="#recLeague.admin.forms.ArchiveSeasonForm.summary" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.ArchiveSeasonForm.champion_team">
+<span class="sig-name descname"><span class="pre">champion_team</span></span><a class="headerlink" href="#recLeague.admin.forms.ArchiveSeasonForm.champion_team" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.ArchiveSeasonForm.runner_up_team">
+<span class="sig-name descname"><span class="pre">runner_up_team</span></span><a class="headerlink" href="#recLeague.admin.forms.ArchiveSeasonForm.runner_up_team" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.ArchiveSeasonForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.admin.forms.ArchiveSeasonForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.CreateSeasonForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">CreateSeasonForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.CreateSeasonForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for creating a new season.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.CreateSeasonForm.season_name">
+<span class="sig-name descname"><span class="pre">season_name</span></span><a class="headerlink" href="#recLeague.admin.forms.CreateSeasonForm.season_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.CreateSeasonForm.date_end">
+<span class="sig-name descname"><span class="pre">date_end</span></span><a class="headerlink" href="#recLeague.admin.forms.CreateSeasonForm.date_end" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.CreateSeasonForm.divisions">
+<span class="sig-name descname"><span class="pre">divisions</span></span><a class="headerlink" href="#recLeague.admin.forms.CreateSeasonForm.divisions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SeasonForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">SeasonForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.SeasonForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for editing a current season.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SeasonForm.season_name">
+<span class="sig-name descname"><span class="pre">season_name</span></span><a class="headerlink" href="#recLeague.admin.forms.SeasonForm.season_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SeasonForm.date_end">
+<span class="sig-name descname"><span class="pre">date_end</span></span><a class="headerlink" href="#recLeague.admin.forms.SeasonForm.date_end" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SeasonForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.admin.forms.SeasonForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SettingsForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">SettingsForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.SettingsForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for league settings.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.SettingsForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#recLeague.admin.forms.SettingsForm.password" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">TeamForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.TeamForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for Team data editable by admin.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamForm.players">
+<span class="sig-name descname"><span class="pre">players</span></span><a class="headerlink" href="#recLeague.admin.forms.TeamForm.players" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamForm.division">
+<span class="sig-name descname"><span class="pre">division</span></span><a class="headerlink" href="#recLeague.admin.forms.TeamForm.division" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamsListForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">TeamsListForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.TeamsListForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for all teams for admin to edit.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamsListForm.teams">
+<span class="sig-name descname"><span class="pre">teams</span></span><a class="headerlink" href="#recLeague.admin.forms.TeamsListForm.teams" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.TeamsListForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.admin.forms.TeamsListForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.UserForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">UserForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.UserForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for User data editable by admin.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.UserForm.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#recLeague.admin.forms.UserForm.status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="recLeague.admin.forms.UsersListForm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">recLeague.admin.forms.</span></span><span class="sig-name descname"><span class="pre">UsersListForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recLeague.admin.forms.UsersListForm" title="Link to this definition">¶</a></dt>
+<dd><p>Form for all users for admin to edit.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.UsersListForm.users">
+<span class="sig-name descname"><span class="pre">users</span></span><a class="headerlink" href="#recLeague.admin.forms.UsersListForm.users" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="recLeague.admin.forms.UsersListForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><a class="headerlink" href="#recLeague.admin.forms.UsersListForm.submit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="deploy.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Deploying your website</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Patrick Eichler
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#recLeague.create_app"><code class="docutils literal notranslate"><span class="pre">create_app()</span></code></a></li>
+<li><a class="reference internal" href="#routes">Routes</a></li>
+<li><a class="reference internal" href="#environment-variables">Environment Variables</a><ul>
+<li><a class="reference internal" href="#flask-config-path">Flask Config Path</a></li>
+<li><a class="reference internal" href="#league-config-path">League Config Path</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#recLeague.config.APPEARANCE_PATH"><code class="docutils literal notranslate"><span class="pre">APPEARANCE_PATH</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.CONFIG_PATH"><code class="docutils literal notranslate"><span class="pre">CONFIG_PATH</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.DEFUALT_NUM_DIVISIONS"><code class="docutils literal notranslate"><span class="pre">DEFUALT_NUM_DIVISIONS</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.DIVISION_NAMES"><code class="docutils literal notranslate"><span class="pre">DIVISION_NAMES</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.FlaskConfig"><code class="docutils literal notranslate"><span class="pre">FlaskConfig</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.LEAGUE_NAME"><code class="docutils literal notranslate"><span class="pre">LEAGUE_NAME</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.MAX_DIVISIONS"><code class="docutils literal notranslate"><span class="pre">MAX_DIVISIONS</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.MAX_GAME_SCORE"><code class="docutils literal notranslate"><span class="pre">MAX_GAME_SCORE</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.MIN_GAME_SCORE"><code class="docutils literal notranslate"><span class="pre">MIN_GAME_SCORE</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.MIN_LIFETIME_AVERAGE_GAMES"><code class="docutils literal notranslate"><span class="pre">MIN_LIFETIME_AVERAGE_GAMES</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.MIN_SEASON_AVERAGE_GAMES"><code class="docutils literal notranslate"><span class="pre">MIN_SEASON_AVERAGE_GAMES</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.NUM_TEAM_PLAYERS"><code class="docutils literal notranslate"><span class="pre">NUM_TEAM_PLAYERS</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.SCORECARD_PICS_PATH"><code class="docutils literal notranslate"><span class="pre">SCORECARD_PICS_PATH</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.SCORECARD_PICS_STATIC_PATH"><code class="docutils literal notranslate"><span class="pre">SCORECARD_PICS_STATIC_PATH</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.STAT_CATEGORIES"><code class="docutils literal notranslate"><span class="pre">STAT_CATEGORIES</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.STAT_HIGHLIGHT"><code class="docutils literal notranslate"><span class="pre">STAT_HIGHLIGHT</span></code></a></li>
+<li><a class="reference internal" href="#appearance">Appearance</a><ul>
+<li><a class="reference internal" href="#recLeague.config.APPEARANCE"><code class="docutils literal notranslate"><span class="pre">APPEARANCE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#database">Database</a><ul>
+<li><a class="reference internal" href="#recLeague.models.ArchivedSeason"><code class="docutils literal notranslate"><span class="pre">ArchivedSeason</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Division"><code class="docutils literal notranslate"><span class="pre">Division</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Game"><code class="docutils literal notranslate"><span class="pre">Game</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Season"><code class="docutils literal notranslate"><span class="pre">Season</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.models.Season.id"><code class="docutils literal notranslate"><span class="pre">Season.id</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Season.name"><code class="docutils literal notranslate"><span class="pre">Season.name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Season.date_start"><code class="docutils literal notranslate"><span class="pre">Season.date_start</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Season.date_end"><code class="docutils literal notranslate"><span class="pre">Season.date_end</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Season.is_archived"><code class="docutils literal notranslate"><span class="pre">Season.is_archived</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.models.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Stats"><code class="docutils literal notranslate"><span class="pre">Stats</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.Team"><code class="docutils literal notranslate"><span class="pre">Team</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-recLeague.games.utils">Utils</a><ul>
+<li><a class="reference internal" href="#recLeague.games.utils.calculate_player_stats"><code class="docutils literal notranslate"><span class="pre">calculate_player_stats()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.utils.calculate_stats"><code class="docutils literal notranslate"><span class="pre">calculate_stats()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.utils.calculate_team_stats"><code class="docutils literal notranslate"><span class="pre">calculate_team_stats()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.utils.is_game_user_modifiable"><code class="docutils literal notranslate"><span class="pre">is_game_user_modifiable()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.utils.save_scorecard_picture"><code class="docutils literal notranslate"><span class="pre">save_scorecard_picture()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.utils.set_game"><code class="docutils literal notranslate"><span class="pre">set_game()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.utils.send_reset_email"><code class="docutils literal notranslate"><span class="pre">send_reset_email()</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.utils.get_team_csv_text"><code class="docutils literal notranslate"><span class="pre">get_team_csv_text()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-recLeague.games.forms">Forms</a><ul>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm"><code class="docutils literal notranslate"><span class="pre">GameForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_1"><code class="docutils literal notranslate"><span class="pre">GameForm.team_1</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_2"><code class="docutils literal notranslate"><span class="pre">GameForm.team_2</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_1_players"><code class="docutils literal notranslate"><span class="pre">GameForm.team_1_players</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_2_players"><code class="docutils literal notranslate"><span class="pre">GameForm.team_2_players</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_1_score"><code class="docutils literal notranslate"><span class="pre">GameForm.team_1_score</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.team_2_score"><code class="docutils literal notranslate"><span class="pre">GameForm.team_2_score</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.stats"><code class="docutils literal notranslate"><span class="pre">GameForm.stats</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.picture"><code class="docutils literal notranslate"><span class="pre">GameForm.picture</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.comment"><code class="docutils literal notranslate"><span class="pre">GameForm.comment</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.submit"><code class="docutils literal notranslate"><span class="pre">GameForm.submit</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.games.forms.GameForm.set_form"><code class="docutils literal notranslate"><span class="pre">GameForm.set_form()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.games.forms.StatForm"><code class="docutils literal notranslate"><span class="pre">StatForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.games.forms.StatForm.set_stats"><code class="docutils literal notranslate"><span class="pre">StatForm.set_stats()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.games.forms.TeamCountValdiator"><code class="docutils literal notranslate"><span class="pre">TeamCountValdiator</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.LoginForm"><code class="docutils literal notranslate"><span class="pre">LoginForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.users.forms.LoginForm.email"><code class="docutils literal notranslate"><span class="pre">LoginForm.email</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.LoginForm.password"><code class="docutils literal notranslate"><span class="pre">LoginForm.password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.LoginForm.remember"><code class="docutils literal notranslate"><span class="pre">LoginForm.remember</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.LoginForm.submit"><code class="docutils literal notranslate"><span class="pre">LoginForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm"><code class="docutils literal notranslate"><span class="pre">RegistrationForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.first_name"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.first_name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.last_name"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.last_name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.email"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.email</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.password"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.confirm_password"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.confirm_password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.league_password"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.league_password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RegistrationForm.submit"><code class="docutils literal notranslate"><span class="pre">RegistrationForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.users.forms.RequestResetForm"><code class="docutils literal notranslate"><span class="pre">RequestResetForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.users.forms.RequestResetForm.email"><code class="docutils literal notranslate"><span class="pre">RequestResetForm.email</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.RequestResetForm.submit"><code class="docutils literal notranslate"><span class="pre">RequestResetForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.users.forms.ResetPasswordForm"><code class="docutils literal notranslate"><span class="pre">ResetPasswordForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.users.forms.ResetPasswordForm.password"><code class="docutils literal notranslate"><span class="pre">ResetPasswordForm.password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.ResetPasswordForm.confirm_password"><code class="docutils literal notranslate"><span class="pre">ResetPasswordForm.confirm_password</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.users.forms.ResetPasswordForm.submit"><code class="docutils literal notranslate"><span class="pre">ResetPasswordForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamCreateForm"><code class="docutils literal notranslate"><span class="pre">TeamCreateForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamCreateForm.team_name"><code class="docutils literal notranslate"><span class="pre">TeamCreateForm.team_name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamCreateForm.submit"><code class="docutils literal notranslate"><span class="pre">TeamCreateForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamJoinForm"><code class="docutils literal notranslate"><span class="pre">TeamJoinForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamJoinForm.team"><code class="docutils literal notranslate"><span class="pre">TeamJoinForm.team</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.teams.forms.TeamJoinForm.submit"><code class="docutils literal notranslate"><span class="pre">TeamJoinForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.ArchiveSeasonForm"><code class="docutils literal notranslate"><span class="pre">ArchiveSeasonForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.ArchiveSeasonForm.summary"><code class="docutils literal notranslate"><span class="pre">ArchiveSeasonForm.summary</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.ArchiveSeasonForm.champion_team"><code class="docutils literal notranslate"><span class="pre">ArchiveSeasonForm.champion_team</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.ArchiveSeasonForm.runner_up_team"><code class="docutils literal notranslate"><span class="pre">ArchiveSeasonForm.runner_up_team</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.ArchiveSeasonForm.submit"><code class="docutils literal notranslate"><span class="pre">ArchiveSeasonForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.CreateSeasonForm"><code class="docutils literal notranslate"><span class="pre">CreateSeasonForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.CreateSeasonForm.season_name"><code class="docutils literal notranslate"><span class="pre">CreateSeasonForm.season_name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.CreateSeasonForm.date_end"><code class="docutils literal notranslate"><span class="pre">CreateSeasonForm.date_end</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.CreateSeasonForm.divisions"><code class="docutils literal notranslate"><span class="pre">CreateSeasonForm.divisions</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.SeasonForm"><code class="docutils literal notranslate"><span class="pre">SeasonForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.SeasonForm.season_name"><code class="docutils literal notranslate"><span class="pre">SeasonForm.season_name</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.SeasonForm.date_end"><code class="docutils literal notranslate"><span class="pre">SeasonForm.date_end</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.SeasonForm.submit"><code class="docutils literal notranslate"><span class="pre">SeasonForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.SettingsForm"><code class="docutils literal notranslate"><span class="pre">SettingsForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.SettingsForm.password"><code class="docutils literal notranslate"><span class="pre">SettingsForm.password</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamForm"><code class="docutils literal notranslate"><span class="pre">TeamForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamForm.players"><code class="docutils literal notranslate"><span class="pre">TeamForm.players</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamForm.division"><code class="docutils literal notranslate"><span class="pre">TeamForm.division</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamsListForm"><code class="docutils literal notranslate"><span class="pre">TeamsListForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamsListForm.teams"><code class="docutils literal notranslate"><span class="pre">TeamsListForm.teams</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.TeamsListForm.submit"><code class="docutils literal notranslate"><span class="pre">TeamsListForm.submit</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.UserForm"><code class="docutils literal notranslate"><span class="pre">UserForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.UserForm.status"><code class="docutils literal notranslate"><span class="pre">UserForm.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recLeague.admin.forms.UsersListForm"><code class="docutils literal notranslate"><span class="pre">UsersListForm</span></code></a><ul>
+<li><a class="reference internal" href="#recLeague.admin.forms.UsersListForm.users"><code class="docutils literal notranslate"><span class="pre">UsersListForm.users</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.admin.forms.UsersListForm.submit"><code class="docutils literal notranslate"><span class="pre">UsersListForm.submit</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=1dc612b0"></script>
+    </body>
+</html>
