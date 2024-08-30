@@ -69,18 +69,12 @@ Database built with SQLAlchemy.
 Utils
 -----
 
-Games
-^^^^^
 .. automodule:: recLeague.games.utils
 	:members:
 
-Users
-^^^^^
 .. automodule:: recLeague.users.utils
 	:members:
 
-Admin
-^^^^^
 .. automodule:: recLeague.admin.utils
 	:members:
 
@@ -88,22 +82,14 @@ Admin
 Forms
 -----
 
-Games
-^^^^^
 .. automodule:: recLeague.games.forms
 	:members:
 
-Users
-^^^^^
 .. automodule:: recLeague.users.forms
 	:members:
 
-Teams
-^^^^^
 .. automodule:: recLeague.teams.forms
 	:members:
 
-Admin
-^^^^^
 .. automodule:: recLeague.admin.forms
 	:members:
