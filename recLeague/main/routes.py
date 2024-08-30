@@ -48,7 +48,8 @@ def search() -> ResponseReturnValue:
 
 # Flask routes that non-athenticated users can go to
 public_routes = [
-    "users.login", "users.register", "users.reset_request", "users.reset_token"
+    "users.login", "users.register", 
+    "users.reset_request", "users.reset_token"
 ]
 
 
@@ -67,6 +68,10 @@ def is_authenticated() -> ResponseReturnValue:
 @main.before_app_request
 def before_request() -> ResponseReturnValue:
     """ Flask method that gets called before every HTTP request """
+    
+    if (request.endpoint is not None 
+       and request.endpoint == "main.is_authenticated"):
+        return
 
     # Check if user is current user is banned ... if so log them out
     if current_user.is_authenticated and current_user.is_banned:
