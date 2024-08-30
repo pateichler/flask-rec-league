@@ -72,6 +72,6 @@ Here is a full Flask configuration file filled with dummy data:
 
 	SECRET_KEY = 'SECRET_KEY'
 	
-	MAIL_USERNAME = 'test@gmail.com'
+	MAIL_USERNAME = 'test'
 	MAIL_PASSWORD = 'password'
 	MAIL_SERVER = 'smtp.googlemail.com'

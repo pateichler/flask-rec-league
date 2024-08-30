@@ -37,6 +37,9 @@ intersphinx_mapping = {
     "flask": ("https://flask.palletsprojects.com/", None),
 }
 
+# Copy button
+copybutton_prompt_text = "..."
+copybutton_only_copy_prompt_lines = False
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

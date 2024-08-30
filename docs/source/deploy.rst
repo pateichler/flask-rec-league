@@ -9,7 +9,7 @@ Correy Schafer has a great `YouTube video <https://youtu.be/goToXTC96Co>`_ on de
 
 .. note::
 
-	For security reasons, it is recommended that you don't run the app on the root user. Also, enable SSH key authentication instead of password authentication for you web server SSH to help increase security.
+	For security reasons, it is recommended that you don't run the app on your web server's root user. Also, enable SSH key authentication on your web server instead of password authentication to help increase security.
 
 Setting production mode
 -----------------------
@@ -23,15 +23,13 @@ The application currently runs in debug mode, which will show debug logs on serv
 
 	...
 
-	DEBUG='False'
-
-TODO: Set port?
+	DEBUG = False
 
 
 Disable firewall
 ----------------
 
-The app running connected with the internet will need a firewall. Check out setting up a firewall on your web server machine. The following is how to set up a firewall on Ubuntu using `UncomplicatedFirewall (UFW) <https://wiki.ubuntu.com/UncomplicatedFirewall>`.
+The app running connected with the internet will need a firewall. Check out setting up a firewall on your web server machine. The following is how to set up a firewall on Ubuntu using `UncomplicatedFirewall (UFW) <https://wiki.ubuntu.com/UncomplicatedFirewall>`_.
 
 Install UFW using apt install:
 
@@ -65,14 +63,17 @@ Check that all changes to UFW worked by running the command:
 
 .. admonition:: Quick test
 
-	For a quick test to see if your site working on the internet, open up the port 5000 and run the application.
+	For a quick test to see if your site working on the internet, open up the port 5000:
 
 	.. code-block::
 
 		sudo ufw allow 5000
-		sudo ufw enable
 
-		python run.py
+	Next, to run the application on your web address (instead of local address 127.0.0.1), we will use the `Flask CLI <https://flask.palletsprojects.com/en/3.0.x/cli/>`_ to set our host name and run the application. The host name ``0.0.0.0`` will open the Flask application to all addresses on the server. Run the following flask CLI command:
+
+	.. code-block::
+
+		flask --app run run --host=0.0.0.0
 
 	Then check the website out at: ``<your_web_server_ip>:5000``, where ``<your_web_server_ip>`` is the static IP address of your running web server. All functionality should work with the application.
 
@@ -81,7 +82,6 @@ Check that all changes to UFW worked by running the command:
 	.. code-block::
 
 		sudo ufw delete allow 5000
-		sudo ufw enable??????? TODO: Check if needed
 
 
 Serving the application
@@ -104,28 +104,43 @@ NGINX can be installed on Ubuntu with apt install:
 
 	sudo apt install nginx
 
-
-Next, remove the default NGINX configuration file at ``/etc/nginx/sites-enabled/default`` and create your own configuration file at ``/etc/nginx/sites-enabled/<your_name_here>``. Put the following configuration in your newly created file:
+NGINX will need to be able to access your repository folder (to serve the static files), so ensure NGINX is able to access the repository by the following command on Ubuntu:
 
 .. code-block::
 	
+	sudo -u www-data namei <path_to_repo>/recLeague/static/
+
+If result shows Permission denied, add the ``www-data`` user to the user that contains the repository (also make sure that user has proper privileges itself):
+
+.. code-block::
+
+	sudo gpasswd -a www-data <your_user>
+
+Next, remove the default NGINX configuration file at ``/etc/nginx/sites-enabled/default`` and create your own configuration file at ``/etc/nginx/sites-enabled/<your_app_name_here>`` with the following information:
+
+.. code-block::
+
 	server{
 		listen 80;
 		server_name <your_domain_or_ip>;
 
-		location /static/public {
-			alias <path_to_repo>/recLeague/static/public;
-		}
-
+		# Serve static files through NGINX
 		location /static {
+			# Set all static files to require authentication
 			auth_request /auth;
 			alias <path_to_repo>/recLeague/static;
+
+			# Turn off authentication for static files in the public folder
+			location /static/public {
+				auth_request off;
+			}
 		}
 
+		# Pass off to Gunicorn for all other routes
 		location / {
 			proxy_pass http://localhost:8000;
-	        include /etc/nginx/proxy_params;
-	        proxy_redirect off;
+			include /etc/nginx/proxy_params;
+			proxy_redirect off;
 		}
 	}
 
@@ -138,7 +153,7 @@ Where the following variables are:
 
 	In the configuration, the static route is protected by the ``auth_request`` to prevent outside users gaining access to scorecard pictures.
 
-If you planning to upload scorecard pictures and expect the file size to be large, increase the max file size by adding the following line in ``/etc/nginx/nginx.connf``:
+If you planning to upload scorecard pictures and expect the file size to be large, increase the max file size by adding the following line in ``/etc/nginx/nginx.connf`` in the ``http`` section:
 
 .. code-block::
 	
@@ -171,9 +186,8 @@ Gunicorn can be installed with pip. Make sure your Python virtual environment is
 	.. code-block::
 
 		gunicorn run:app
-		TODO: Test if it works without workers argument
 
-	The application should be viewable at your web server static IP address, and all functionality should work.
+	The application should be viewable at your web server static IP address on port ``80``, and all functionality should work.
 
 
 Supervisor
@@ -185,11 +199,11 @@ Finally, install Supervisor on Ubuntu with apt install:
 
 	sudo apt install supervisor
 
-Configure Supervisor to run Gunicorn by adding the following configuration file at ``/etc/supervisor/conf.d/<your_name_here>.conf``:
+Configure Supervisor to run Gunicorn by adding the following configuration file at ``/etc/supervisor/conf.d/<your_app_name_here>.conf``:
 
 .. code-block::
 	
-	[program:<your_name_here>]
+	[program:<your_app_name_here>]
 	user=<your_ubuntu_user>
 	directory=<path_to_repository_folder>
 	command=<path_to_gunicorn_executable> -w <number_of_workers> run:app
@@ -200,13 +214,13 @@ Configure Supervisor to run Gunicorn by adding the following configuration file 
 	stopasgroup=true
 	killasgroup=true
 
-	stderr_logfile=<your_err_log_path>.err.log
-	stdout_logfile=<your_out_log_path>.out.log
+	stderr_logfile=<your_err_log_path>/app.err.log
+	stdout_logfile=<your_out_log_path>/app.out.log
 
 
 Where the following variables in the configuration file are:
 
-* **<your_name_here>**: Choose a name for your program.
+* **<your_app_name_here>**: Choose a name for your program.
 * **<your_ubuntu_user>**: User account name on Ubuntu.
 * **<path_to_repository_folder>**: Path to the Rec League repository.
 * **command**
@@ -216,16 +230,16 @@ Where the following variables in the configuration file are:
 
 	.. code-block::
 
-		command=/home/user/RecLeague/venv/bin/gunicorn -w 3 run:app
+		command=/home/user/flask-rec-league/venv/bin/gunicorn -w 3 run:app
 
 * **<environment>**: Optional list of your environment variables. This can include all environment variables for running the application, otherwise make sure the variables are set either on server boot up or by executing a script in the command using the ``&&`` operator.
 	* Example: 
 	
 	.. code-block::
 
-		environment=FLASK_PROD_CONFIG_PATH="<path_to_config>",LEAGUE_CONFIG_PATH="<league_config_path>"
+		environment=FLASK_CONFIG_PATH="<path_to_config>",LEAGUE_CONFIG_PATH="<league_config_path>"
 
-* **<your_err_log_path>**, **<your_out_log_path>**: Optional paths for log files from the application. Make sure the directories exist before running Supervisor. A good place for logs on Ubuntu are in ``/etc/logs/<your_name_here>/<log_name>``.
+* **<your_err_log_path>**, **<your_out_log_path>**: Optional paths for log files from the application. Make sure the log path exists before running Supervisor. A good place for logs on Ubuntu are in ``/var/log/<your_app_name_here>/<log_file_name>``.
 
 See `Supervisor program configuration <http://supervisord.org/configuration.html#program-x-section-values>`_ for more details.
 
@@ -238,40 +252,48 @@ Restart Supervisor to apply the configuration:
 
 Your application should now be running. If you can't view the web application check the application logs or the log from Supervisor.
 
+.. note::
+
+	Anytime you want to apply code or configuration changes to the app, make sure to reload the server by running the command above.
+
+Custom domain name
+------------------
+
+If you have a custom domain name for this website, make sure to add the records to the web server static IP address. The records will take a while to update. Check out the website where you purchased the domain name for more information on adding records.
+
 Enabling TLS
 ------------
 
-It is highly recommended to use TLS with this application to encrypt all web traffic with HTTPS. There are a variety of ways to generate TLS certificates. In this example, we will use `Lets Encrypt <https://letsencrypt.org>`_, but you can use any method.
+It is highly recommended to use TLS with this application to encrypt all web traffic with HTTPS. There are a variety of ways to generate TLS certificates. In this example, we will use a certificate from `Lets Encrypt <https://letsencrypt.org>`_, but you can choose any certificate authority.
 
-Install Lets Encrypt on your web server by running the following commands:
+Let's Encrypt only allows certificates for domain names, so you must have a custom domain named linked as described in the section before.
 
-.. code-block::
+We will install the Let's Encrypt certificate by using certbot. certbot is a tool created by Lets Encrypt to install and manage certificates. Refer to `certbot installation <https://certbot.eff.org/instructions>`_ for instructions on installing certbot (choose running on NGINX).
 
-	sudo apt-get install software-properties-common
-	sudo add-apt-repository universe
-	sudo add-apt-repository ppa:certbot/certbot
-	sudo apt-get update
-	sudo apt-get install python-certbot-nginx
-
-
-Once installed, run the certificate generation:
+Once certbot is installed, run the certificate generation:
 
 .. code-block::
 	
 	sudo certbot --nginx
 
+.. note::
 
-Answer all the prompts. For the prompt on redirecting HTTP traffic, it recommended you choose redirect traffic to ensure all users are using HTTPS.
+	If you run into the problem ``"The requested Nginx plugin does not appear to be installed"``, install the plugin on Ubuntu via ``sudo apt-get install python3-certbot-nginx``. Currently, for some reason the certbot installation page doesn't mention this.
 
-After completion, Lets Encrypt will automatically update your NGINX configuration file.
+Answer all the prompts. For the prompt on redirecting HTTP traffic, it recommended you choose redirect traffic to ensure all users are using HTTPS. After completion, certbot will automatically update your NGINX configuration file.
 
-The generated TLS certificate will expire after 90 days. Program your web server to automatically renew your certificate before this deadline, so you don't have to do it manually. On Linux, you can program auto-renewal by using `CronTab <https://man7.org/linux/man-pages/man5/crontab.5.html>`_. Add a Cronjob by running:
+Auto-renewal
+^^^^^^^^^^^^
 
-..code-block::
+The generated TLS certificate will typically expire after a period of time. 
+
+Its recommended to program your web server to automatically renew your certificate before this deadline, so you don't have to do it manually. On Linux, you can program auto-renewal by using `CronTab <https://man7.org/linux/man-pages/man5/crontab.5.html>`_. Add a Cronjob by running:
+
+.. code-block::
 
 	sudo crontab -e
 
-Then in your editor of choice, add a Cronjob set to renew before 90 days that runs the command ``sudo certbot renew``. For example, below is the full command to run the fifth day of every month at 3 am:
+Then in your editor of choice, add a Cronjob to execute the certificate renewal program before it expires. With cerbot, the command is ``sudo certbot renew``. Below is a full example for a Cronjob running cerbot renew on the fifth day of every month at 3 am:
 
 .. code-block::
 	:caption: crontab configuration
@@ -281,8 +303,6 @@ Then in your editor of choice, add a Cronjob set to renew before 90 days that ru
 
 View your application
 ---------------------
-
-If you have a custom domain name for this website, make sure to add the records to the web server static IP address. The records will take a while to update. Check out the website where you purchased the domain name for more information on adding records.
 
 Your Rec League application is now fully deployed. View your website by either typing in the static IP address into your web browser or using your custom domain name. Test out all features to make sure everything is working correctly.
 

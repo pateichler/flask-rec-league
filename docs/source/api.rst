@@ -16,6 +16,8 @@ Command Line Interface
 
 TODO?
 
+.. _config:
+
 Configuration
 -------------
 

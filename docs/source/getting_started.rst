@@ -8,6 +8,8 @@ The web application is ran with Python. Rec Leagues is developed specifically wi
 
 A Python virtual environment is recommended for this application to maintain a clean separated workspace. There are many ways of setting up Python virtual environments. For a specific option check out `Python venv <https://docs.python.org/3/library/venv.html>`_.
 
+`pip <https://pip.pypa.io>`_ is used to download Python packages. Install pip if your system doesn't already have it installed.
+
 .. _installation:
 
 Installation
@@ -24,12 +26,12 @@ Once installed, navigate to the repository.
 
 .. code-block::
 	
-	cd RecLeague
+	cd flask-rec-league
 
 
 If you plan to use a Python virtual environment, create and activate the virtual environment.
 
-Next, install the required Python packages via `pip <https://pip.pypa.io>`_.
+Next, install the required Python packages via pip.
 
 .. code-block::
 	
