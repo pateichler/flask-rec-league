@@ -27,11 +27,6 @@ League Config Path
 
 Path to a JSON configuration for league settings. See :ref:`config <config>` for details about the JSON file. Supports either relative or absolute paths. Relative paths are from the directory ``flask-rec-league/config``.
 
-Command Line Interface
-----------------------
-
-TODO?
-
 .. _config:
 
 Configuration

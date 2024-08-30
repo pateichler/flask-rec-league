@@ -72,11 +72,9 @@ CONFIG_PATH: str = get_config_path(_config_path, "config")
 """ Path for loading the initial configuration ``.json`` file relative to 
     config folder or as absolute path.
     
-    .. note::
-        
-        Variable is set from environment variable named 
-        :ref:`LEAGUE_CONFIG_PATH <LEAGUE_CONFIG_PATH>` or by passing in 
-        through the command line TODO: See running.
+    Variable is set from environment variable named 
+    :ref:`LEAGUE_CONFIG_PATH <LEAGUE_CONFIG_PATH>`. If no environment variable 
+    is set, the default value is ``my_config.json``.
     
     :meta hide-value:
 """

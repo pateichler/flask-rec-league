@@ -63,16 +63,4 @@ After initialized, run the web app by running ``run.py``.
 	
 	python run.py
 
-The website is then viewable at ``localhost:8000``.
-
-.. tip::
-
-	If you want to quickly switch out configurations, instead of changing the environment variable, you may also run the python scripts as follows:
-
-	.. code-block::
-
-		python initialize.py <your_config_path>
-		python run.py <your_config_path>
-
-
-The website should be all functional except the password reset form. For setting up the email for password reset continue on.
+The website is then viewable at ``localhost:8000``. The website should be all functional except the password reset form. For setting up the email for password reset continue on.
