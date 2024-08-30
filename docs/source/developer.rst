@@ -18,5 +18,4 @@ The web app is built with `Flask <https://flask.palletsprojects.com>`_ for the w
    first_website
    flask_config
    deploy
-   usage
    api
