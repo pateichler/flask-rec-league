@@ -2,9 +2,9 @@ import sys
 import os
 
 # Set environment
-if len(sys.argv) >= 2 and sys.argv[1].startswith("--") is False:
+# if len(sys.argv) >= 2 and sys.argv[1].startswith("--") is False:
     # TODO: possibly don't set environment variable directly
-    os.environ["LEAGUE_CONFIG_PATH"] = sys.argv[1]
+    # os.environ["LEAGUE_CONFIG_PATH"] = sys.argv[1]
 
 # TODO: use arg 3 as Flask application path
 
