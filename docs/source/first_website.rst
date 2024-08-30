@@ -38,7 +38,7 @@ Setting config path
 
 If you choose ``my_config`` as your name, you may skip the step of setting the config path because the default config path is ``my_config``.
 
-Set the project to use your newly created configuration by setting the config path. You can set the config path by the environment variable ``LEAGUE_CONFIG_PATH``:
+Set the project to use your newly created configuration by setting the config path. You can set the config path by the environment variable :ref:`LEAGUE_CONFIG_PATH <LEAGUE_CONFIG_PATH>`:
 
 .. code-block::
 

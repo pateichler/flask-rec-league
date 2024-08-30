@@ -3,7 +3,7 @@ Flask configuration
 
 In this application, there are Flask extensions that need to be configured for full functionality of Rec Leagues. The Flask application can be configured by using a configuration file.
 
-Create a ``.cfg`` configuration file anywhere on your computer. The name of the configuration file can be anything you want. Once you have created the file, set the environment variable ``FLASK_CONFIG_PATH`` to the path of the newly created file:
+Create a ``.cfg`` configuration file anywhere on your computer. The name of the configuration file can be anything you want. Once you have created the file, set the environment variable :ref:`FLASK_CONFIG_PATH <FLASK_CONFIG_PATH>` to the path of the newly created file:
 
 .. code-block::
 	

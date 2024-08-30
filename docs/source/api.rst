@@ -9,7 +9,23 @@ The following is the API documentation.
 Environment Variables
 ---------------------
 
-TODO: List environment variables
+.. _FLASK_CONFIG_PATH:
+
+Flask Config Path
+^^^^^^^^^^^^^^^^^
+
+``FLASK_CONFIG_PATH``
+
+Path to a configuration file used to set Flask ``app.config``. Path should be absolute. See `flask.Config.from_envvar <https://flask.palletsprojects.com/en/3.0.x/api/#flask.Config.from_envvar>`_ for details about the config file.
+
+.. _LEAGUE_CONFIG_PATH:
+
+League Config Path
+^^^^^^^^^^^^^^^^^^
+
+``LEAGUE_CONFIG_PATH``
+
+Path to a JSON configuration for league settings. See :ref:`config <config>` for details about the JSON file. Supports either relative or absolute paths. Relative paths are from the directory ``flask-rec-league/config``.
 
 Command Line Interface
 ----------------------

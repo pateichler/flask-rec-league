@@ -75,8 +75,9 @@ CONFIG_PATH: str = get_config_path(_config_name, "config")
     
     .. note::
         
-        Variable is set from environment variable named ``LEAGUE_CONFIG_PATH`` 
-        or by passing in through the command line TODO: See running.
+        Variable is set from environment variable named 
+        :ref:`LEAGUE_CONFIG_PATH <LEAGUE_CONFIG_PATH>` or by passing in 
+        through the command line TODO: See running.
     
     :meta hide-value:
 """
@@ -164,7 +165,9 @@ DIVISION_NAMES: list[str] = list(
     :meta hide-value:
 """
 
-MAX_DIVISIONS: int = config_dict["DIVISION"].get("max_num", len(DIVISION_NAMES)) 
+MAX_DIVISIONS: int = (
+    config_dict["DIVISION"].get("max_num", len(DIVISION_NAMES))
+)
 """ Maximum number of divisions when creating a season.
     
     **JSON Path:** ``/DIVISION/max_num``
