@@ -29,9 +29,8 @@ def copy_default_config_file():
     )
 
 
-def get_config_path(name: str, base_path: str) -> str:
-    extension = os.path.splitext(name)[1]
-    path = name if name != "" else "my_config"
+def get_config_path(path: str, base_path: str) -> str:
+    extension = os.path.splitext(path)[1]
 
     if extension == '':
         path += '.json'
@@ -60,18 +59,18 @@ def load_config_file(path: str) -> dict:
             raise SystemExit(e)
 
 
-_config_name = os.environ.get("LEAGUE_CONFIG_PATH")
+_config_path = os.environ.get("LEAGUE_CONFIG_PATH")
 
 # Check if empty config name ... is so change to default config name and copy 
 # file if doesn't already exist
-if _config_name is None:
-    _config_name = "my_config.json"
-    if os.path.isfile(get_config_path(_config_name, "config")) is False:
+if _config_path is None:
+    _config_path = "my_config.json"
+    if os.path.isfile(get_config_path(_config_path, "config")) is False:
         copy_default_config_file()
 
-CONFIG_PATH: str = get_config_path(_config_name, "config")
+CONFIG_PATH: str = get_config_path(_config_path, "config")
 """ Path for loading the initial configuration ``.json`` file relative to 
-    config/appearance folder or as absolute path.
+    config folder or as absolute path.
     
     .. note::
         
