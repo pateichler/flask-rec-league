@@ -37,7 +37,9 @@ def save_scorecard_picture(form_picture_filepath: str) -> str:
     
     .. note::
 
-        See SCORECARD_PICS_STATIC_PATH for information about the save path.
+        See :py:data:`SCORECARD_PICS_STATIC_PATH 
+        <recLeague.config.SCORECARD_PICS_STATIC_PATH>` for information about 
+        the save path.
     
     Args:
         form_picture_filepath (str): Filepath of picture to save.
