@@ -5,7 +5,7 @@ from flask.typing import ResponseReturnValue
 from flask_login import current_user, logout_user
 
 from recLeague.config import (
-    BRANDING, APPEARANCE, STAT_HIGHLIGHT
+    BRANDING, APPEARANCE, STAT_HIGHLIGHT, LEAGUE_NAME
 )
 from recLeague.models import Game, Season, User, Team
 
@@ -91,11 +91,16 @@ def before_request() -> ResponseReturnValue:
 def inject_data():
     """ Injects data for jinja to use """
     if current_user.is_authenticated is False:
-        return dict(branding=BRANDING, appearance=APPEARANCE)
+        return dict(
+            branding=BRANDING, appearance=APPEARANCE, league_name=LEAGUE_NAME
+        )
 
     # User is authenticated so pass in season data to be used in the 
     # navbar in layout.html
     season = Season.query.first()
-    return dict(season=season, branding=BRANDING, appearance=APPEARANCE)
+    return dict(
+        season=season, branding=BRANDING, appearance=APPEARANCE, 
+        league_name=LEAGUE_NAME
+    )
 
     

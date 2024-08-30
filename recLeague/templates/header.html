@@ -19,9 +19,9 @@
 <link rel="icon" href="{{ url_for('static', filename=branding.fav_icon_svg) }}" type="image/svg+xml">
 
 {% if title %}
-    <title>Duos League - {{ title }}</title>
+    <title>{{league_name}} - {{ title }}</title>
 {% else %}
-    <title>Duos League</title>
+    <title>{{league_name}}</title>
 {% endif %}
 
 <style type="text/css">
