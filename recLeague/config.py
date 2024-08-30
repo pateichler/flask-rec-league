@@ -15,6 +15,7 @@ class FlaskConfig:
 
     MAIL_PORT = 587
     MAIL_USE_TLS = True
+    MAIL_DEBUG = False
 
     SECRET_KEY = "DEFAULT_SECRET_KEY"
 
