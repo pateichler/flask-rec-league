@@ -6,9 +6,9 @@ Use command line arguments for testing.
 import os
 from cli.helper import create_app, database_exists
 
-if __name__ == '__main__':
-    app = create_app()
+app = create_app()
 
+if __name__ == '__main__':
     if database_exists(app) is False:
         print("ERROR: Database not initialized! \
             Initialize app to create database.")
