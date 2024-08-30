@@ -58,6 +58,9 @@ def is_authenticated() -> ResponseReturnValue:
     """Indicates whether the user is currently logged in.
     
     Method is used by NGINX for authorized static routes.
+
+    :statuscode 200: User is logged in.
+    :statuscode 401: User is not logged in.
     """
     if current_user.is_authenticated:
         return "", 200

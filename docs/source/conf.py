@@ -24,7 +24,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
-    'sphinx_copybutton'
+    'sphinx_copybutton',
+    'sphinxcontrib.autohttp.flask'
 ]
 
 templates_path = ['_templates']

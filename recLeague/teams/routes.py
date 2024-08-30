@@ -23,7 +23,13 @@ def _get_team_players(team_id: int) -> ResponseReturnValue:
         team_id (int): ID of team
     
     Returns:
-        Json-dict: Array of players on team
+        json: Array of user IDs on team.
+    
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Team has players.
+    :statuscode 204: Team does not exist.
+    :statuscode 400: Not valid team_id.
     """
     try:
         id = int(team_id)
@@ -33,12 +39,24 @@ def _get_team_players(team_id: int) -> ResponseReturnValue:
         return ('', 204)
 
     except ValueError:
-        return ('', 204)
+        return ('', 400)
 
 
 @teams.route("/teams-latest-game-score")
 def _get_teams_latest_game_score() -> ResponseReturnValue:
-    """API route gets latest game team 1 score played between two teams """
+    """API route gets latest game score between two teams.
+    
+    Returns:
+        json: Object with fields team_1 and team_2 set to the score.
+
+    :query int team-1: ID of team 1.
+    :query int team-2: ID of team 2.
+
+    :statuscode 200: Teams have a game between each other.
+    :statuscode 204: No game between the teams was found.
+    :statuscode 400: Team query parameters not valid.
+
+    """
 
     # Get team IDs from route arguments
     team_1 = request.args.get('team-1', None, type=int)
@@ -59,7 +77,9 @@ def _get_teams_latest_game_score() -> ResponseReturnValue:
                 }
                 return jsonify(score) 
 
-    return ('', 204)
+        return ('', 204)
+
+    return ('', 400)
 
 
 @teams.route("/team/new", methods=['GET', 'POST'])

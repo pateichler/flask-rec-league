@@ -6,6 +6,15 @@ The following is the API documentation.
 .. automodule:: recLeague
 	:members:
 
+Routes
+------
+
+Below are the API routes. Flask template routes for the application are not listed .
+
+.. autoflask:: run:app
+	:endpoints: main.is_authenticated, teams._get_team_players, teams._get_teams_latest_game_score, admin.downloadTeamsCSV
+
+
 Environment Variables
 ---------------------
 
