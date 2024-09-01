@@ -1,6 +1,10 @@
 Rec League documentation
 ========================
 
+.. image:: _static/recLeagueScreenshots.png
+   :width: 100%
+   :alt: Rec League screenshots
+
 Rec (recreation) League is an open sourced web application for keeping track of recreation league games and statistics. It is customizable to support a wide variety recreation leagues such as competitive sports, gaming, and leisure activities. The application features player game submissions, admin control settings, team standings, custom player statistics, and more.
 
 This documentation provides information for users and developers of Rec League. Any further questions contact through email.
