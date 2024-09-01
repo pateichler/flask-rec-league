@@ -47,3 +47,8 @@ copybutton_only_copy_prompt_lines = False
 
 html_theme = 'furo'
 html_static_path = ['_static']
+
+html_theme_options = {
+    "light_logo": "AlternateLogo.png",
+    "dark_logo": "Logo.png",
+}
