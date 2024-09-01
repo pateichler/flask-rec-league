@@ -8,6 +8,5 @@
 	"background_accent_color": "#e3f3fa",
 	"background_accent_overlap_color": "white",
 	"background_font_color": "#212529",
-	"background_font_color_alternate": "white",
-	"custom_css": ""
+	"background_font_color_alternate": "white"
 }
