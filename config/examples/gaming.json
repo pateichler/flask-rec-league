@@ -1,0 +1,59 @@
+{
+	"SQLALCHEMY_DATABASE_URI": "sqlite:///gaming.db",
+	
+	"LEAGUE_INFO":{
+		"leage_name": "Gaming league",
+		"branding": {
+			"primary_logo": "public/examples/gaming/Logo.png",
+			"alternate_logo": "public/examples/gaming/AlternateLogo.png",
+			"fav_icon": "public/examples/default/icons/favicon.ico",
+			"fav_icon_svg": "public/examples/default/icons/favicon.svg"
+		}
+	},
+
+	"NUM_TEAM_PLAYERS": 6,
+	"GAME":{
+		"score": {
+			"min": 0,
+			"max": 200
+		},
+		"require_scorecard": false
+	},
+	"DIVISION": {
+		"names": [
+			"East",
+			"West",
+			"North",
+			"South"
+		]
+	},
+	"STATS": {
+		"highlight": "kills",
+		"categories": [
+			{
+				"name": "Score",
+				"key": "score"
+			},
+			{
+				"name": "Kills",
+				"key": "kills"
+			},
+			{
+				"name": "Deaths",
+				"key": "deaths"
+			},
+			{
+				"name": "Captures",
+				"key": "captures"
+			}
+		]
+	},
+	"LEADERBOARD":{
+		"min_season_average_games": 3,
+		"min_lifetime_average_games": 5
+	},
+
+	"APPEARANCE": {
+		"path": "examples/gaming.json"
+	}
+}
