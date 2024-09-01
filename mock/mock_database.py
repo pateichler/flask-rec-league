@@ -35,6 +35,8 @@ def create_users():
 
 
 def create_teams():
+    start_id = User.query.filter_by(name='Robot 1').first().id
+
     for i in range(num_teams):
         team = Team(name="Team " + str(i+1))
         team.division = Division.query.get(
@@ -43,7 +45,7 @@ def create_teams():
         db.session.add(team)
 
         for p in range(NUM_TEAM_PLAYERS):
-            User.query.get(p+2 + i * NUM_TEAM_PLAYERS).team = team
+            User.query.get(p+start_id + i * NUM_TEAM_PLAYERS).team = team
 
     db.session.commit()
 
@@ -54,8 +56,9 @@ def create_divisions():
     db.session.commit()
 
 
-if User.query.count() > 1:
-    print("Database already created users ... consider reinitializing database")
+if User.query.filter_by(name='Robot 1').first() is not None:
+    print("Database already created users ... consider "
+          "re-initializing database")
     print("aborting test database")
     sys.exit()
 
