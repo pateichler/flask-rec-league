@@ -121,10 +121,15 @@ def game(game_id: int) -> ResponseReturnValue:
         game.player_stats[i].get_stats() 
         for i in range(NUM_TEAM_PLAYERS * 2)
     ))
-    img_url = url_for(
-        'static', 
-        filename=os.path.join(SCORECARD_PICS_STATIC_PATH, game.picture_file)
-    )
+    if game.picture_file is not None:
+        img_url = url_for(
+            'static', 
+            filename=os.path.join(
+                SCORECARD_PICS_STATIC_PATH, game.picture_file
+            )
+        )
+    else:
+        img_url = None
 
     return render_template(
         'game.html', game=game, t_stats=transpose(stats),

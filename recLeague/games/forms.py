@@ -13,7 +13,7 @@ from wtforms.fields.html5 import IntegerField
 from recLeague.models import User, Team, Stats, Game
 from recLeague.config import (
     STAT_CATEGORIES, NUM_TEAM_PLAYERS, MIN_GAME_SCORE, MAX_GAME_SCORE, 
-    STAT_CATEGORY_KEYS
+    STAT_CATEGORY_KEYS, SCORECARD_REQUIRED
 )
 
 
@@ -217,7 +217,7 @@ class GameForm(FlaskForm):
             the picture field, otherwise FileRequired is removed.
         """
 
-        if required:
+        if required and SCORECARD_REQUIRED:
             self.picture.validators = [
                 FileAllowed(['jpg', 'png', 'jpeg']), FileRequired()
             ]

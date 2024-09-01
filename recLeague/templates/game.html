@@ -42,7 +42,9 @@
 			{% endfor %}
 		</table>
 	</div>
+	{% if img_url is not none %}
 	<img src="{{ img_url }}" style="width: 100%;">
+	{% endif %}
 	
 	{% if current_user.is_admin %}
 	<div class="py-5">

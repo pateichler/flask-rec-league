@@ -126,6 +126,14 @@ MAX_GAME_SCORE: int = score.get("max", None) if score is not None else None
     :meta hide-value:
 """
 
+SCORECARD_REQUIRED: bool = config_dict["GAME"].get("require_scorecard", False)
+""" Boolean if scorecard is required with Game form.
+    
+    **JSON Path:** ``/GAME/require_scorecard``
+
+    :meta hide-value:
+"""
+
 # Stat settings
 # TODO: Validate stat settings to make sure they didn't change
 STAT_CATEGORIES: list[dict] = list(config_dict["STATS"]["categories"])

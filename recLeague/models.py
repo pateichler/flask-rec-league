@@ -268,7 +268,7 @@ class Game(BaseModel):
     
     player_stats = db.relationship("Stats", cascade="all, delete")
 
-    picture_file = db.Column(db.String(20), nullable=False)
+    picture_file = db.Column(db.String(20))
     comment = db.Column(db.String(120), unique=False, nullable=True)
     date_posted = db.Column(
         db.DateTime, nullable=False, default=datetime.utcnow
