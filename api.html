@@ -190,6 +190,10 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/AlternateLogo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/Logo.png" alt="Dark Logo"/>
+  </div>
   
   <span class="sidebar-brand-text">Rec League 0.1 documentation</span>
   
@@ -360,7 +364,6 @@
 
         <span class="s2">&quot;LEAGUE_INFO&quot;</span><span class="p">:{</span>
                 <span class="s2">&quot;leage_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Rec league&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;welcome_msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;branding&quot;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="s2">&quot;primary_logo&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/Logo.png&quot;</span><span class="p">,</span>
                         <span class="s2">&quot;alternate_logo&quot;</span><span class="p">:</span> <span class="s2">&quot;public/examples/default/AlternateLogo.png&quot;</span><span class="p">,</span>
@@ -553,6 +556,15 @@ unique for URI. Without the hash a collision could occur for example:</p>
 </dd></dl>
 
 <dl class="py data">
+<dt class="sig sig-object py" id="recLeague.config.SCORECARD_REQUIRED">
+<span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">SCORECARD_REQUIRED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#recLeague.config.SCORECARD_REQUIRED" title="Link to this definition">¶</a></dt>
+<dd><p>Boolean if scorecard is required with Game form.</p>
+<p><strong>JSON Path:</strong> <code class="docutils literal notranslate"><span class="pre">/GAME/require_scorecard</span></code></p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="recLeague.config.SQLALCHEMY_DATABASE_URI">
 <span class="sig-prename descclassname"><span class="pre">recLeague.config.</span></span><span class="sig-name descname"><span class="pre">SQLALCHEMY_DATABASE_URI</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#recLeague.config.SQLALCHEMY_DATABASE_URI" title="Link to this definition">¶</a></dt>
 <dd><p>Database URI for Flask SQLAlchemy.</p>
@@ -602,8 +614,7 @@ values included below.</p>
         <span class="s2">&quot;background_accent_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#E5E5E5&quot;</span><span class="p">,</span>
         <span class="s2">&quot;background_accent_overlap_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#CECECE&quot;</span><span class="p">,</span>
         <span class="s2">&quot;background_font_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#212529&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;background_font_color_alternate&quot;</span><span class="p">:</span> <span class="s2">&quot;lightgray&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;custom_css&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+        <span class="s2">&quot;background_font_color_alternate&quot;</span><span class="p">:</span> <span class="s2">&quot;lightgray&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1324,6 +1335,7 @@ sets an empty form.</p>
 <li><a class="reference internal" href="#recLeague.config.NUM_TEAM_PLAYERS"><code class="docutils literal notranslate"><span class="pre">NUM_TEAM_PLAYERS</span></code></a></li>
 <li><a class="reference internal" href="#recLeague.config.SCORECARD_PICS_PATH"><code class="docutils literal notranslate"><span class="pre">SCORECARD_PICS_PATH</span></code></a></li>
 <li><a class="reference internal" href="#recLeague.config.SCORECARD_PICS_STATIC_PATH"><code class="docutils literal notranslate"><span class="pre">SCORECARD_PICS_STATIC_PATH</span></code></a></li>
+<li><a class="reference internal" href="#recLeague.config.SCORECARD_REQUIRED"><code class="docutils literal notranslate"><span class="pre">SCORECARD_REQUIRED</span></code></a></li>
 <li><a class="reference internal" href="#recLeague.config.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">SQLALCHEMY_DATABASE_URI</span></code></a></li>
 <li><a class="reference internal" href="#recLeague.config.STAT_CATEGORIES"><code class="docutils literal notranslate"><span class="pre">STAT_CATEGORIES</span></code></a></li>
 <li><a class="reference internal" href="#recLeague.config.STAT_HIGHLIGHT"><code class="docutils literal notranslate"><span class="pre">STAT_HIGHLIGHT</span></code></a></li>
