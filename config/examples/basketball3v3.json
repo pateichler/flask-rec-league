@@ -4,8 +4,8 @@
 	"LEAGUE_INFO":{
 		"leage_name": "Basketball 3v3 league",
 		"branding": {
-			"primary_logo": "public/examples/default/Logo.png",
-			"alternate_logo": "public/examples/default/AlternateLogo.png",
+			"primary_logo": "public/examples/basketball3v3/Logo.png",
+			"alternate_logo": "public/examples/basketball3v3/AlternateLogo.png",
 			"fav_icon": "public/examples/default/icons/favicon.ico",
 			"fav_icon_svg": "public/examples/default/icons/favicon.svg"
 		}
